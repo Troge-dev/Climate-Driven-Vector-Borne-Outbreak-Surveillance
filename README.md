@@ -89,22 +89,22 @@ Place your `kaggle.json` API token in `~/.kaggle/kaggle.json` (Linux/Mac) or `%U
 
 ## 🚀 5. Quickstart: How to Run the Pipeline
 
-### Option 1: Automated Full Pipeline (CLI Execution)
-Runs data ingestion, space-time alignment, lag feature engineering, model training, and exports the clean dataset:
+### Option 1: Live Interactive Web Dashboard (Recommended)
+Launch the interactive decision support dashboard with geospatial choropleth maps, "what-if" climate simulator, and LGU action matrix:
+```bash
+streamlit run app.py
+```
+
+### Option 2: Automated Full Pipeline (CLI Execution)
+Runs data ingestion, space-time alignment, lag feature engineering, model tournament benchmarks, and exports the clean dataset:
 ```bash
 python cchain_pipeline.py
 ```
 
-### Option 2: Interactive Jupyter Notebook
+### Option 3: Interactive Jupyter Notebook
 Open and run cells step-by-step to inspect data tables, lag graphs, and classification metrics:
 ```bash
 jupyter notebook Project_CCHAIN_Surveillance_Pipeline.ipynb
-```
-
-### Option 3: Recompile Analytical PDF Deliverables
-```bash
-python generate_proposal_pdf.py   # Produces cchain_proposal_framework.pdf
-python generate_summary_pdf.py    # Produces cchain_model_results_summary.pdf
 ```
 
 ---
