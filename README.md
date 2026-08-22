@@ -20,7 +20,7 @@ By linking 20 years of **ERA5 atmospheric climate reanalysis**, **DOH/LGU epidem
 ## 🗂️ 2. Repository Architecture & Directory Layout
 
 ```
-DMA/
+Climate-Driven Vector-Borne Outbreak Surveillance/
 ├── .gitignore                               # Git exclusion rules (ignores raw data & artifacts)
 ├── README.md                                # Repository documentation & execution guide
 ├── requirements.txt                         # Python package dependencies

@@ -32,11 +32,11 @@ Downloaded directly from Kaggle (`thinkdatasci/project-cchain`), created by **Th
 
 | Raw Kaggle CSV Table | Ingested Scale | Key Extracted Columns | Role in Pipeline |
 | :--- | :---: | :--- | :--- |
-| [`location.csv`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/DMA/data/cchain_raw/location.csv) | **80 Barangays** | `adm3_pcode`, `adm4_pcode`, `adm4_en`, `brgy_total_area` | Spatial Master Reference (`PH104305000`: CDO) |
-| [`disease_lgu_disaggregated_totals.csv`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/DMA/data/cchain_raw/disease_lgu_disaggregated_totals.csv) | **2,490 Records** | `case_total`, `death_total`, `date`, `disease_common_name` | Target Variable ($Y$) |
-| [`climate_atmosphere.csv`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/DMA/data/cchain_raw/climate_atmosphere.csv) | **584,400 Records** | `pr` (rainfall), `tave`, `heat_index`, `rh`, `wind_speed` | Meteorological Predictors ($X$) & Lags |
-| [`google_open_buildings.csv`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/DMA/data/cchain_raw/google_open_buildings.csv) | **80 Barangays** | `google_bldgs_density`, `google_bldgs_pct_built_up_area` | Built-Environment Susceptibility ($Z$) |
-| [`worldpop_population.csv`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/DMA/data/cchain_raw/worldpop_population.csv) | **1,680 Records** | `pop_density_mean`, `pop_count_total` | Human Host Exposure Density ($Z$) |
+| [`location.csv`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/Climate-Driven%20Vector-Borne%20Outbreak%20Surveillance/data/cchain_raw/location.csv) | **80 Barangays** | `adm3_pcode`, `adm4_pcode`, `adm4_en`, `brgy_total_area` | Spatial Master Reference (`PH104305000`: CDO) |
+| [`disease_lgu_disaggregated_totals.csv`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/Climate-Driven%20Vector-Borne%20Outbreak%20Surveillance/data/cchain_raw/disease_lgu_disaggregated_totals.csv) | **2,490 Records** | `case_total`, `death_total`, `date`, `disease_common_name` | Target Variable ($Y$) |
+| [`climate_atmosphere.csv`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/Climate-Driven%20Vector-Borne%20Outbreak%20Surveillance/data/cchain_raw/climate_atmosphere.csv) | **584,400 Records** | `pr` (rainfall), `tave`, `heat_index`, `rh`, `wind_speed` | Meteorological Predictors ($X$) & Lags |
+| [`google_open_buildings.csv`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/Climate-Driven%20Vector-Borne%20Outbreak%20Surveillance/data/cchain_raw/google_open_buildings.csv) | **80 Barangays** | `google_bldgs_density`, `google_bldgs_pct_built_up_area` | Built-Environment Susceptibility ($Z$) |
+| [`worldpop_population.csv`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/Climate-Driven%20Vector-Borne%20Outbreak%20Surveillance/data/cchain_raw/worldpop_population.csv) | **1,680 Records** | `pop_density_mean`, `pop_count_total` | Human Host Exposure Density ($Z$) |
 
 ---
 
@@ -73,7 +73,7 @@ Downloaded directly from Kaggle (`thinkdatasci/project-cchain`), created by **Th
 
 ## 📊 6. Empirical Model Performance & Key Findings
 
-Processed Matrix: **18,960 Space-Time Rows $\times$ 37 Features** ([`cchain_cdo_dengue_surveillance_ready.csv`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/DMA/data/processed/cchain_cdo_dengue_surveillance_ready.csv))
+Processed Matrix: **18,960 Space-Time Rows $\times$ 37 Features** ([`cchain_cdo_dengue_surveillance_ready.csv`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/Climate-Driven%20Vector-Borne%20Outbreak%20Surveillance/data/processed/cchain_cdo_dengue_surveillance_ready.csv))
 
 ### A. Performance Metrics (Evaluated on Unseen 2019–2022 Test Data):
 * **ROC-AUC Score:** **`0.903`** *(Outstanding discrimination between normal vs. epidemic months)*
@@ -116,8 +116,8 @@ When presenting to your professor:
 
 ## 📁 9. Deliverables Directory Index
 
-* 📄 **Analytical Report PDF:** [`cchain_proposal_framework.pdf`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/DMA/cchain_proposal_framework.pdf)
-* 📄 **Results & Model Summary PDF:** [`cchain_model_results_summary.pdf`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/DMA/cchain_model_results_summary.pdf)
-* 📓 **Interactive Jupyter Notebook:** [`Project_CCHAIN_Surveillance_Pipeline.ipynb`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/DMA/Project_CCHAIN_Surveillance_Pipeline.ipynb)
-* 🐍 **Python Pipeline Script:** [`cchain_pipeline.py`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/DMA/cchain_pipeline.py)
-* 📊 **Analysis-Ready CSV Dataset:** [`cchain_cdo_dengue_surveillance_ready.csv`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/DMA/data/processed/cchain_cdo_dengue_surveillance_ready.csv)
+* 📄 **Analytical Report PDF:** [`cchain_proposal_framework.pdf`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/Climate-Driven%20Vector-Borne%20Outbreak%20Surveillance/cchain_proposal_framework.pdf)
+* 📄 **Results & Model Summary PDF:** [`cchain_model_results_summary.pdf`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/Climate-Driven%20Vector-Borne%20Outbreak%20Surveillance/cchain_model_results_summary.pdf)
+* 📓 **Interactive Jupyter Notebook:** [`Project_CCHAIN_Surveillance_Pipeline.ipynb`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/Climate-Driven%20Vector-Borne%20Outbreak%20Surveillance/Project_CCHAIN_Surveillance_Pipeline.ipynb)
+* 🐍 **Python Pipeline Script:** [`cchain_pipeline.py`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/Climate-Driven%20Vector-Borne%20Outbreak%20Surveillance/cchain_pipeline.py)
+* 📊 **Analysis-Ready CSV Dataset:** [`cchain_cdo_dengue_surveillance_ready.csv`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/Climate-Driven%20Vector-Borne%20Outbreak%20Surveillance/data/processed/cchain_cdo_dengue_surveillance_ready.csv)
