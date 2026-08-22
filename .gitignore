@@ -1,0 +1,37 @@
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Jupyter Checkpoints
+.ipynb_checkpoints/
+
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+
+# Agent & IDE Configurations
+.agents/
+.vscode/
+.idea/
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment variables & credentials
+.env
+kaggle.json
+*.pem
+*.key
+
+# Raw Datasets (Large files > 50MB should be downloaded via pipeline)
+data/cchain_raw/*
+!data/cchain_raw/.gitkeep
+
+# Logs
+*.log
