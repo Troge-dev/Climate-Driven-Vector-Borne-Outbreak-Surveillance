@@ -68,8 +68,8 @@ The pipeline relies on the official **Project CCHAIN** dataset on Kaggle (`think
 
 ### A. Clone Repository & Setup Environment
 ```bash
-git clone https://github.com/your-username/project-cchain-surveillance.git
-cd project-cchain-surveillance
+git clone https://github.com/Troge-dev/Climate-Driven-Vector-Borne-Outbreak-Surveillance.git
+cd Climate-Driven-Vector-Borne-Outbreak-Surveillance
 
 # Create and activate virtual environment
 python -m venv venv
