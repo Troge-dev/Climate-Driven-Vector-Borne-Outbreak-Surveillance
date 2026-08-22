@@ -116,8 +116,6 @@ When presenting to your professor:
 
 ## 📁 9. Deliverables Directory Index
 
-* 📄 **Analytical Report PDF:** [`cchain_proposal_framework.pdf`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/Climate-Driven%20Vector-Borne%20Outbreak%20Surveillance/cchain_proposal_framework.pdf)
-* 📄 **Results & Model Summary PDF:** [`cchain_model_results_summary.pdf`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/Climate-Driven%20Vector-Borne%20Outbreak%20Surveillance/cchain_model_results_summary.pdf)
 * 📓 **Interactive Jupyter Notebook:** [`Project_CCHAIN_Surveillance_Pipeline.ipynb`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/Climate-Driven%20Vector-Borne%20Outbreak%20Surveillance/Project_CCHAIN_Surveillance_Pipeline.ipynb)
 * 🐍 **Python Pipeline Script:** [`cchain_pipeline.py`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/Climate-Driven%20Vector-Borne%20Outbreak%20Surveillance/cchain_pipeline.py)
 * 📊 **Analysis-Ready CSV Dataset:** [`cchain_cdo_dengue_surveillance_ready.csv`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/Climate-Driven%20Vector-Borne%20Outbreak%20Surveillance/data/processed/cchain_cdo_dengue_surveillance_ready.csv)

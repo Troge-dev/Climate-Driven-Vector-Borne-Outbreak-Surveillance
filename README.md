@@ -21,20 +21,19 @@ By linking 20 years of **ERA5 atmospheric climate reanalysis**, **DOH/LGU epidem
 
 ```
 Climate-Driven Vector-Borne Outbreak Surveillance/
+├── docs/                                    # 📚 Comprehensive Documentation Suite
+│   ├── README.md                            # Documentation Master Index
+│   ├── model_architecture_and_methodology.md# Deep-dive: Biology, Spatial W, ML & Metrics
+│   ├── dataset_data_dictionary.md           # 59-Feature Data Dictionary & Lineage
+│   ├── project_summary_and_defense_guide.md # 4 Stages of Analytics & Defense Q&A
+│   └── pipeline_execution_guide.md          # Setup, Reproduction & Verification
+│
 ├── .gitignore                               # Git exclusion rules (ignores raw data & artifacts)
-├── README.md                                # Repository documentation & execution guide
+├── README.md                                # Repository documentation & quickstart
 ├── requirements.txt                         # Python package dependencies
 │
 ├── Project_CCHAIN_Surveillance_Pipeline.ipynb # Interactive end-to-end Jupyter Notebook
 ├── cchain_pipeline.py                       # Automated end-to-end Python pipeline script
-│
-├── generate_proposal_pdf.py                 # Script generating the 3-page Lab 1 Proposal PDF
-├── generate_summary_pdf.py                  # Script generating the Model Evaluation Summary PDF
-├── generate_notebook.py                     # Script generating the notebook template
-│
-├── cchain_proposal_framework.pdf            # 3-Page Publication-ready Lab 1 Analytical Proposal
-├── cchain_model_results_summary.pdf         # 2-Page Executive Model Results & Evaluation Report
-├── PROJECT_SUMMARY_AND_NOTES.md             # Complete project summary & defense talking points
 │
 └── data/
     ├── cchain_raw/                          # Raw Project CCHAIN Kaggle CSV tables (Git ignored)
@@ -42,10 +41,12 @@ Climate-Driven Vector-Borne Outbreak Surveillance/
     │   ├── disease_lgu_disaggregated_totals.csv # DOH/LGU monthly dengue records
     │   ├── climate_atmosphere.csv           # ECMWF ERA5 meteorological vectors
     │   ├── google_open_buildings.csv        # Urban building density & footprint metrics
-    │   └── worldpop_population.csv          # High-resolution demographic exposure metrics
+    │   ├── worldpop_population.csv          # High-resolution demographic exposure metrics
+    │   └── brgy_geography.csv               # Polygon boundaries for spatial contiguity
     │
     └── processed/                           # Engineered analysis-ready outputs (Tracked)
-        └── cchain_cdo_dengue_surveillance_ready.csv # Final merged matrix (18,960 rows x 37 cols)
+        ├── cchain_cdo_dengue_surveillance_ready.csv # Final merged matrix (18,880 rows x 59 cols)
+        └── cchain_model_benchmarks.csv              # Multi-model evaluation tournament metrics
 ```
 
 ---
@@ -101,11 +102,6 @@ Open and run cells step-by-step to inspect data tables, lag graphs, and classifi
 jupyter notebook Project_CCHAIN_Surveillance_Pipeline.ipynb
 ```
 
-### Option 3: Recompile Analytical PDF Deliverables
-```bash
-python generate_proposal_pdf.py   # Produces cchain_proposal_framework.pdf
-python generate_summary_pdf.py    # Produces cchain_model_results_summary.pdf
-```
 
 ---
 
@@ -149,13 +145,15 @@ Outbreak Prediction Performance (Evaluated on 2019-2022 Test Period):
 
 ---
 
-## 📄 8. Key Deliverables & Artifacts
-
-* 📄 **Analytical Proposal PDF:** [`cchain_proposal_framework.pdf`](cchain_proposal_framework.pdf)
-* 📄 **Model Evaluation Summary PDF:** [`cchain_model_results_summary.pdf`](cchain_model_results_summary.pdf)
-* 📓 **Interactive Notebook:** [`Project_CCHAIN_Surveillance_Pipeline.ipynb`](Project_CCHAIN_Surveillance_Pipeline.ipynb)
-* 🐍 **End-to-End Pipeline:** [`cchain_pipeline.py`](cchain_pipeline.py)
-* 📊 **Analysis-Ready Dataset:** [`data/processed/cchain_cdo_dengue_surveillance_ready.csv`](data/processed/cchain_cdo_dengue_surveillance_ready.csv)
+## 📄 8. Key Deliverables & Documentation Suite
+* 📚 [**Comprehensive Model Architecture & Methodology**](docs/model_architecture_and_methodology.md)
+* 📗 [**Dataset Data Dictionary & Lineage Guide**](docs/dataset_data_dictionary.md)
+* 📙 [**Project Summary, Analytics Stages & Defense Q&A**](docs/project_summary_and_defense_guide.md)
+* 📕 [**Pipeline Execution & Reproduction Guide**](docs/pipeline_execution_guide.md)
+* 📓 [**Interactive Jupyter Notebook**](Project_CCHAIN_Surveillance_Pipeline.ipynb)
+* 🐍 [**Automated Python Pipeline Script**](cchain_pipeline.py)
+* 📊 [**Processed 59-Feature Surveillance Matrix**](data/processed/cchain_cdo_dengue_surveillance_ready.csv)
+* 📈 [**Model Evaluation Benchmark Table**](data/processed/cchain_model_benchmarks.csv)
 
 ---
 
