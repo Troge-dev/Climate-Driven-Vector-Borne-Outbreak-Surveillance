@@ -1,6 +1,6 @@
-# Project CCHAIN: Pipeline Execution, Data Ingestion & Reproduction Guide
+# Climate-Driven Vector-Borne Dengue Outbreak Surveillance: Pipeline Execution, Data Ingestion & Reproduction Guide
 
-> **Repository**: Climate-Driven Vector-Borne Outbreak Surveillance Engine  
+> **Repository**: Climate-Driven Vector-Borne Dengue Outbreak Surveillance Engine  
 > **Target OS**: Windows, Linux, macOS  
 > **Python Version**: Python 3.9+ (Python 3.10 / 3.11 recommended)  
 

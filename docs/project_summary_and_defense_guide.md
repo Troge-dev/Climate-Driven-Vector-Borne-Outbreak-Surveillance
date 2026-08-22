@@ -1,7 +1,7 @@
-# Project CCHAIN: Project Summary, Analytics Stages & Oral Defense Guide
+# Climate-Driven Vector-Borne Dengue Outbreak Surveillance: Summary, Analytics Stages & Oral Defense Guide
 
 > **Course Context**: Data Mining & Analytics (DMA) — Laboratory Activity 1: Types of Data Analytics  
-> **Topic Title**: Climate-Driven Vector-Borne Outbreak Surveillance & LGU Decision Support Engine  
+> **Topic Title**: Climate-Driven Vector-Borne Dengue Outbreak Surveillance & LGU Decision Support Engine  
 > **Pilot LGU**: Cagayan de Oro City, Northern Mindanao (PSA Code: `PH104305000`)  
 > **Data Repository**: Project CCHAIN (Thinking Machines, EpiMetrics, Manila Observatory, PACSII, Wellcome Trust, Lacuna Fund)  
 

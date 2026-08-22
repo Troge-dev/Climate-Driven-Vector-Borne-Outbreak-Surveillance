@@ -1,6 +1,6 @@
-# Project CCHAIN: Comprehensive Model Architecture, Biological Foundations & Machine Learning Methodology
+# Climate-Driven Vector-Borne Dengue Outbreak Surveillance: Architecture, Biological Foundations & Machine Learning Methodology
 
-> **Target Application**: Climate-Driven Vector-Borne Outbreak Surveillance & Prescriptive Resource Allocation  
+> **Target Application**: Climate-Driven Vector-Borne Dengue Outbreak Surveillance & Prescriptive Resource Allocation  
 > **Pilot Geography**: City of Cagayan de Oro (PH104305000), Northern Mindanao, Philippines  
 > **Target Disease**: Dengue Fever (*Aedes aegypti* / *Aedes albopictus* transmission)  
 > **Temporal Resolution**: Monthly panel across 20 Historical Years (2003–2022, 236 operational months)  

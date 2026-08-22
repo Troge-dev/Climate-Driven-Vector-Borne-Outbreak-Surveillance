@@ -1,6 +1,6 @@
-# 📚 Project CCHAIN Documentation Portal
+# 📚 Climate-Driven Vector-Borne Dengue Outbreak Surveillance Documentation Portal
 
-Welcome to the comprehensive documentation suite for **Project CCHAIN (Climate-Driven Vector-Borne Outbreak Surveillance Engine)**.
+Welcome to the comprehensive documentation suite for the **Climate-Driven Vector-Borne Dengue Outbreak Surveillance Engine (Project CCHAIN)**.
 
 This repository provides an end-to-end data analytics, machine learning, and decision-support pipeline for forecasting localized dengue epidemics across 80 barangays in Cagayan de Oro City, Philippines (2003–2022).
 

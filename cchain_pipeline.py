@@ -1,5 +1,5 @@
 """
-Project CCHAIN: Climate-Driven Vector-Borne Outbreak Surveillance Engine
+Climate-Driven Vector-Borne Dengue Outbreak Surveillance Engine
 Complete Advanced Pipeline (Phases 1-4)
 - Zero Future Climate Leakage (30-Day and 60-Day Lead Forecasts)
 - Spatial Adjacency Contiguity Matrix (W * Y)

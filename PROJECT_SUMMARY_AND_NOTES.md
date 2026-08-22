@@ -1,4 +1,4 @@
-# Project CCHAIN: Climate-Driven Vector-Borne Outbreak Surveillance Engine
+# Climate-Driven Vector-Borne Dengue Outbreak Surveillance Engine
 ### **Complete Project Summary, Dataset Mappings, Model Results & Defense Guide**
 *Laboratory Activity 1: Types of Data Analytics (DMA Course)*
 

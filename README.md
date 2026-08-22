@@ -1,4 +1,4 @@
-# 🦟 Project CCHAIN: Climate-Driven Vector-Borne Outbreak Surveillance Engine
+# 🦟 Climate-Driven Vector-Borne Dengue Outbreak Surveillance Engine
 > **A 4-Stage Data Analytics & Machine Learning Pipeline for Dengue Outbreak Forecasting & LGU Resource Optimization**  
 > *Pilot Implementation: Cagayan de Oro City, Philippines (2003–2022)*
 
