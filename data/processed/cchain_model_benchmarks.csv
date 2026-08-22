@@ -1,0 +1,9 @@
+Horizon,Model,ROC-AUC,PR-AUC,Optimal Thresh,F2-Score (Opt),F1-Score (Opt),Recall (Sensitivity),Precision,Brier Score
+30-Day Early Warning (T+1),Logistic Regression (L2 Balanced),0.9605,0.7914,0.65,0.7832,0.6456,0.913,0.4994,0.1142
+30-Day Early Warning (T+1),LightGBM Classifier,0.9596,0.7879,0.9,0.717,0.7067,0.724,0.6903,0.0859
+30-Day Early Warning (T+1),XGBoost Classifier,0.9601,0.7844,0.89,0.7591,0.6972,0.8068,0.6139,0.099
+30-Day Early Warning (T+1),Random Forest Classifier,0.9571,0.7458,0.86,0.7279,0.6819,0.7622,0.6168,0.1042
+60-Day Early Warning (T+2),XGBoost Classifier,0.9537,0.7554,0.91,0.7143,0.6858,0.7346,0.6431,0.1008
+60-Day Early Warning (T+2),Logistic Regression (L2 Balanced),0.9526,0.7528,0.66,0.7749,0.6301,0.9151,0.4805,0.1263
+60-Day Early Warning (T+2),LightGBM Classifier,0.9492,0.7333,0.88,0.7018,0.6794,0.7176,0.645,0.0916
+60-Day Early Warning (T+2),Random Forest Classifier,0.9493,0.7198,0.81,0.7433,0.6714,0.8004,0.5782,0.1061
