@@ -1,5 +1,5 @@
-# Climate-Driven Vector-Borne Dengue Outbreak Surveillance Engine
-### **Complete Project Summary, Dataset Mappings, Model Results & Defense Guide**
+# Cagayan de Oro City Dengue Early Warning & Municipal Surveillance Engine
+### **Complete Project Summary, Dataset Mappings, Model Results & Defense Guide for CDO LGU**
 *Laboratory Activity 1: Types of Data Analytics (DMA Course)*
 
 ---
@@ -8,14 +8,14 @@
 
 Use any of the options below to claim your topic on the class shared sheet:
 
-### 🌟 Primary Copy-Paste Option (Recommended):
+### 🌟 Primary Copy-Paste Option (Comprehensive CDO LGU Scope):
 ```text
-climate_atmosphere.csv + disease_lgu_disaggregated_totals.csv + google_open_buildings.csv + worldpop_population.csv + location.csv. Can multi-month climate lags (rainfall, temperature, heat index) combined with urban building density predict localized dengue outbreak risks 30 to 60 days in advance to prescriptively allocate LGU vector-control and medical resources?
+climate_atmosphere.csv + disease_lgu_disaggregated_totals.csv + google_open_buildings.csv + worldpop_population.csv + location.csv + brgy_geography.csv. Can multi-month climate lags (rainfall, temperature, heat index) combined with satellite building density and spatial contiguity predict localized dengue outbreak risks 30 to 60 days in advance across Cagayan de Oro's 80 barangays to prescriptively allocate CDO LGU vector-control and medical resources?
 ```
 
-### 🔹 Alternative 1 (Machine Learning & Early Warning Focus):
+### 🔹 Alternative 1 (Machine Learning & Municipal Early Warning Focus):
 ```text
-climate_atmosphere.csv + disease_lgu_disaggregated_totals.csv + google_open_buildings.csv + worldpop_population.csv. How can 1-to-3 month biological weather lags and barangay built-environment density forecast dengue epidemic thresholds per barangay for early-warning LGU intervention?
+climate_atmosphere.csv + disease_lgu_disaggregated_totals.csv + google_open_buildings.csv + worldpop_population.csv. How can 1-to-3 month biological weather lags and barangay built-environment density forecast dengue epidemic thresholds across Cagayan de Oro City for early-warning CDO City Health Office (CHO) intervention?
 ```
 
 ---

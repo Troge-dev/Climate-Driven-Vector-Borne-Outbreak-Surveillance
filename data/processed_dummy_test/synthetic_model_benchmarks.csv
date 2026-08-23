@@ -1,0 +1,9 @@
+Horizon,Model,ROC-AUC,PR-AUC,Accuracy,Optimal Thresh,Recall (Sensitivity),Precision,F1-Score,F2-Score (Public Health),Brier Loss
+30-Day Lead (T+1),Logistic Regression,0.9427,0.8272,0.8663,0.51,0.8269,0.5931,0.6908,0.7665,0.0967
+30-Day Lead (T+1),Random Forest,0.9312,0.7769,0.8993,0.56,0.7404,0.713,0.7264,0.7347,0.0852
+30-Day Lead (T+1),LightGBM,0.9404,0.8127,0.8993,0.62,0.7115,0.7255,0.7184,0.7143,0.076
+30-Day Lead (T+1),XGBoost,0.9366,0.8094,0.8854,0.56,0.7308,0.6667,0.6972,0.717,0.0818
+60-Day Lead (T+2),Logistic Regression,0.9344,0.7909,0.8681,0.53,0.7981,0.6014,0.686,0.7491,0.1
+60-Day Lead (T+2),Random Forest,0.9215,0.7417,0.8993,0.59,0.7308,0.717,0.7238,0.728,0.089
+60-Day Lead (T+2),LightGBM,0.9232,0.7686,0.8854,0.59,0.6923,0.6792,0.6857,0.6897,0.0867
+60-Day Lead (T+2),XGBoost,0.9211,0.7785,0.8785,0.51,0.7692,0.6349,0.6957,0.738,0.088

@@ -1,25 +1,26 @@
-# Climate-Driven Vector-Borne Dengue Outbreak Surveillance: Architecture, Biological Foundations & Machine Learning Methodology
+# Cagayan de Oro City Dengue Early Warning & Municipal Surveillance Engine: Architecture, Vector Biology & Machine Learning Methodology
 
-> **Target Application**: Climate-Driven Vector-Borne Dengue Outbreak Surveillance & Prescriptive Resource Allocation  
-> **Pilot Geography**: City of Cagayan de Oro (PH104305000), Northern Mindanao, Philippines  
+> **Target Application**: Climate-Driven Vector-Borne Dengue Outbreak Surveillance & Prescriptive Resource Allocation for Cagayan de Oro City Local Government Unit (CDO LGU)  
+> **Key Stakeholders**: CDO City Health Office (CHO), City Disaster Risk Reduction and Management Office (CDRRMO), J.R. Borja General Hospital (JRBGH), and Northern Mindanao Medical Center (NMMC)  
+> **Pilot Geography**: City of Cagayan de Oro (`PH104305000`), Northern Mindanao, Philippines  
 > **Target Disease**: Dengue Fever (*Aedes aegypti* / *Aedes albopictus* transmission)  
 > **Temporal Resolution**: Monthly panel across 20 Historical Years (2003–2022, 236 operational months)  
 > **Spatial Granularity**: 80 Discrete Administrative Barangays (ADM4)  
 
 ---
 
-## 1. Executive Summary & Core Modeling Philosophy
+## 1. Executive Summary & CDO LGU Modeling Philosophy
 
-Project CCHAIN resolves a critical vulnerability in municipal public health operations: **the reactive lag of clinical disease surveillance**. 
+This surveillance engine resolves a critical operational bottleneck in municipal public health management across Cagayan de Oro City: **the reactive lag of clinical disease surveillance**. 
 
-In conventional public health management, vector-control interventions (fogging, chemical larviciding, public warnings) are triggered only after hospitals and rural health units report surging inpatient admissions. Because the biological lifecycle of the mosquito vector and the viral incubation period require 4 to 8 weeks to manifest as symptomatic human cases, reactive responses are deployed when transmission is already near or at peak epidemic intensity.
+In conventional public health operations, municipal vector-control interventions (thermal fogging, chemical larviciding, public warnings) are deployed only after district health centers and emergency rooms at **Northern Mindanao Medical Center (NMMC)** and **J.R. Borja General Hospital (JRBGH)** are overwhelmed with severe pediatric dengue admissions. Because the biological lifecycle of the *Aedes aegypti* vector and the viral incubation period require 4 to 8 weeks to manifest as clinical admissions, reactive responses are deployed when community transmission is already peaking across high-density urban barangays like Carmen, Lapasan, Kauswagan, and Balulang.
 
 ```
 Conventional Reactive Pipeline (Delayed Intervention):
 [Rainfall/Heat Anomaly] ──(4-8 Weeks)──> [Vector Spike] ──> [Human Cases Surge] ──> [Hospital Overload] ──> [REACTIVE INTERVENTION (Too Late)]
 
-Project CCHAIN Predictive Engine (Proactive Early Warning):
-[Climate Anomaly (T-2m, T-1m)] ──> [CCHAIN Engine + Spatial W] ──> [PREDICT T+1 / T+2 OUTBREAK RISK] ──> [PROACTIVE LARVICIDING & BED RESERVES]
+CDO LGU Predictive Surveillance Engine (Proactive Early Warning):
+[Climate Anomaly (T-2m, T-1m)] ──> [CDO Engine + Spatial W] ──> [PREDICT T+1 / T+2 OUTBREAK RISK] ──> [PROACTIVE LARVICIDING & BED ALLOCATION]
 ```
 
 Project CCHAIN bridges this gap by modeling the **non-linear, multi-month physical and biological mechanisms** linking atmospheric dynamics, satellite-derived urban morphology, demographic host exposure, and spatial contagion.

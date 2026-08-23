@@ -1,0 +1,17 @@
+Noise Level,Model,Mean Prob Shift (MAE),Max Prob Shift,Alert Classification Flip Rate
++/-5%,Logistic Regression,0.064,0.4749,7.12%
++/-5%,Random Forest,0.0493,0.3635,2.60%
++/-5%,LightGBM,0.0526,0.6969,5.38%
++/-5%,XGBoost,0.0565,0.6296,6.77%
++/-10%,Logistic Regression,0.1266,0.9066,12.50%
++/-10%,Random Forest,0.0826,0.4551,6.60%
++/-10%,LightGBM,0.0723,0.665,7.64%
++/-10%,XGBoost,0.0691,0.5897,6.94%
++/-25%,Logistic Regression,0.2675,0.9891,28.82%
++/-25%,Random Forest,0.1357,0.639,13.89%
++/-25%,LightGBM,0.1123,0.801,11.81%
++/-25%,XGBoost,0.1198,0.8432,12.15%
++/-50%,Logistic Regression,0.3333,0.9985,33.51%
++/-50%,Random Forest,0.1676,0.6603,17.36%
++/-50%,LightGBM,0.1397,0.9249,15.10%
++/-50%,XGBoost,0.1407,0.9112,15.62%

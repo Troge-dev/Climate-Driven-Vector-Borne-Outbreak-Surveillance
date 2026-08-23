@@ -1,164 +1,148 @@
-# 🦟 Climate-Driven Vector-Borne Dengue Outbreak Surveillance Engine
-> **A 4-Stage Data Analytics & Machine Learning Pipeline for Dengue Outbreak Forecasting & LGU Resource Optimization**  
-> *Pilot Implementation: Cagayan de Oro City, Philippines (2003–2022)*
+# 🦟 Cagayan de Oro City Dengue Early Warning & Outbreak Prevention System
+> **A Spatial-Temporal Climate Surveillance & Machine Learning Decision-Support Engine for the Cagayan de Oro City Local Government Unit (CDO LGU)**  
+> *Developed for the CDO City Health Office (CHO) & City Disaster Risk Reduction and Management Office (CDRRMO)*  
+> *Pilot City: Cagayan de Oro City, Northern Mindanao, Philippines (80 Barangays | 2003–2022 Longitudinal Dataset)*
 
 ---
 
-## 📖 1. Project Overview & Objectives
+## 🏛️ 1. Project Overview & CDO LGU Operational Problem Statement
 
-In tropical urban centers, Local Government Units (LGUs) often rely on reactive responses to climate-induced vector-borne disease surges. This project builds a localized early-warning surveillance engine using the official open-source **Project CCHAIN** dataset (developed by Thinking Machines, EpiMetrics, Manila Observatory, and PACSII).
+In Cagayan de Oro City, dengue fever represents a severe annual municipal health emergency. The **CDO City Health Office (CHO)** and the **City Disaster Risk Reduction and Management Office (CDRRMO)** historically face significant operational constraints due to **delayed, reactive responses**:
+* Traditional vector control (e.g., thermal fogging and indoor residual spraying) and community larviciding are often initiated only *after* hospital triage wards at **Northern Mindanao Medical Center (NMMC)** and **J.R. Borja General Hospital (JRBGH)** are overwhelmed with severe pediatric dengue cases.
+* Standard clinical reporting lags by 2 to 4 weeks, leaving barangay health centers unable to deploy preventative measures in time.
 
-By linking 20 years of **ERA5 atmospheric climate reanalysis**, **DOH/LGU epidemiological case registries**, **Google Open Buildings footprints**, and **WorldPop high-resolution demographics**, this repository implements all **Four Types of Data Analytics**:
+### The CDO LGU Surveillance Solution:
+This project establishes a **localized, predictive, and prescriptive early-warning surveillance engine** engineered specifically for the 80 barangays of Cagayan de Oro City. By integrating 20 years of downscaled **ECMWF ERA5-Land climate reanalysis**, **DOH Region X / CDO CHO epidemiological records**, **Google Open Buildings urban footprints**, and **WorldPop high-resolution exposure grids**, the system models the **non-linear 30-to-90 day biological lag relationship** between monsoon rainfall, ambient thermal heat index, urban slum density, and *Aedes aegypti* mosquito proliferation.
 
-1. **Descriptive:** Historical monthly seasonality and geographic high-risk barangay clustering.
-2. **Diagnostic:** Multi-month biological lag dynamics (1-to-3 month thermal/rainfall lags driving *Aedes aegypti* vector breeding and viral incubation).
-3. **Predictive:** Supervised machine learning classification (Random Forest) predicting outbreak risks 30 to 60 days ahead (**ROC-AUC = 0.903, Accuracy = 87.0%**).
-4. **Prescriptive:** An automated decision matrix for LGUs to optimize spatial larviciding, targeted fogging, and hospital triage bed allocation.
+This enables the CDO Mayor's Office and City Health Officers to execute targeted vector control and preposition clinical supplies **30 to 60 days in advance**.
+
+```
+┌─────────────────────────────────────────────────────────────────────────────────────────────┐
+│                   CDO LGU 4-STAGE DATA ANALYTICS & SURVEILLANCE PIPELINE                    │
+├───────────────────────────┬─────────────────────────────┬───────────────────────────────────┤
+│ Stage                     │ Analytics Type              │ Key Deliverable for CDO LGU       │
+├───────────────────────────┼─────────────────────────────┼───────────────────────────────────┤
+│ 1. CDO Baseline & GIS     │ Descriptive Analytics       │ 20-Year Baseline & 80-Brgy W Map  │
+│ 2. Biological Lag Engine  │ Diagnostic Analytics        │ Distributed Lags & Physical Terms │
+│ 3. 30D & 60D Predictors   │ Predictive Analytics        │ Multi-Model Outbreak Probability  │
+│ 4. Municipal Dispatch     │ Prescriptive Analytics      │ Automated 3-Tier LGU Action Matrix│
+└───────────────────────────┴─────────────────────────────┴───────────────────────────────────┘
+```
 
 ---
 
-## 🗂️ 2. Repository Architecture & Directory Layout
+## 🗺️ 2. Geographic Scope: Cagayan de Oro City's 80 Barangays
+
+The system models micro-climate risk profiles across all **80 distinct barangays of Cagayan de Oro City** (`PH104305000`):
+* **High-Density Urban Lowlands & Flood Basins:** Carmen, Lapasan, Kauswagan, Balulang, Macasandig, Puntod, Bulua, Nazareth, Camaman-an, Gusa.
+* **Coastal & Port Zones:** Macabalan, Bonbon, Bayabas, Puerto, Tablon, Agusan.
+* **Rapidly Expanding Upland & Peri-Urban Corridors:** Upper Puerto, Lumbia, Canitoan, Iponan, Pagatpat.
+* **High-Altitude Forested Enclaves:** Dansolihon, Besigan, Tumpagon, Pigsag-an, Tignapoloan.
+
+The boundary polygon geometries (`brgy_geography.csv`) are parsed into a row-normalized **Spatial Contiguity Weights Matrix ($W$)** representing all **428 spatial neighbor connections** across CDO, capturing cross-border human and mosquito viral transmission.
+
+---
+
+## 🗂️ 3. Modular Repository Directory Layout
 
 ```
 Climate-Driven Vector-Borne Outbreak Surveillance/
-├── docs/                                    # 📚 Comprehensive Documentation Suite
-│   ├── README.md                            # Documentation Master Index
-│   ├── model_architecture_and_methodology.md# Deep-dive: Biology, Spatial W, ML & Metrics
-│   ├── dataset_data_dictionary.md           # 59-Feature Data Dictionary & Lineage
-│   ├── project_summary_and_defense_guide.md # 4 Stages of Analytics & Defense Q&A
-│   └── pipeline_execution_guide.md          # Setup, Reproduction & Verification
+├── data/
+│   ├── cchain_raw/                                 # 35 Raw Project CCHAIN Kaggle CSV tables (Git ignored)
+│   ├── processed/                                  # Production CDO engineered datasets & benchmarks
+│   │   ├── cchain_cdo_dengue_surveillance_ready.csv # Final CDO matrix (18,880 rows x 59 columns)
+│   │   └── cchain_model_benchmarks.csv              # Multi-model evaluation tournament metrics
+│   ├── dummy_test_city/                            # Lightweight synthetic test suite (~10 MB)
+│   └── processed_dummy_test/                       # Processed synthetic outputs & stress results
 │
-├── .gitignore                               # Git exclusion rules (ignores raw data & artifacts)
-├── README.md                                # Repository documentation & quickstart
-├── requirements.txt                         # Python package dependencies
+├── docs/                                           # 📚 Technical Documentation & Defense Suite
+│   ├── README.md                                   # Documentation Master Index
+│   ├── dataset_data_dictionary.md                  # 59-Feature Data Dictionary & Lineage
+│   ├── model_architecture_and_methodology.md       # Deep-dive: Biology, Spatial W, ML & Metrics
+│   ├── pipeline_execution_guide.md                 # Reproduction & CLI Execution Guide
+│   ├── project_summary_and_defense_guide.md        # 4 Stages of Analytics & Defense Q&A
+│   └── randomized_model_stress_test_report.md      # Counterfactual & Noise Robustness Audit
 │
-├── Project_CCHAIN_Surveillance_Pipeline.ipynb # Interactive end-to-end Jupyter Notebook
-├── cchain_pipeline.py                       # Automated end-to-end Python pipeline script
+├── notebooks/                                      # 📓 Interactive Publication-Ready Jupyter Notebooks
+│   ├── 01_cchain_dengue_surveillance_pipeline.ipynb    # Primary CDO pipeline with plots & markdown
+│   └── 02_synthetic_validation_and_stress_testing.ipynb # Standalone synthetic validation notebook
 │
-└── data/
-    ├── cchain_raw/                          # Raw Project CCHAIN Kaggle CSV tables (Git ignored)
-    │   ├── location.csv                     # Spatial boundary definitions (80 CDO barangays)
-    │   ├── disease_lgu_disaggregated_totals.csv # DOH/LGU monthly dengue records
-    │   ├── climate_atmosphere.csv           # ECMWF ERA5 meteorological vectors
-    │   ├── google_open_buildings.csv        # Urban building density & footprint metrics
-    │   ├── worldpop_population.csv          # High-resolution demographic exposure metrics
-    │   └── brgy_geography.csv               # Polygon boundaries for spatial contiguity
-    │
-    └── processed/                           # Engineered analysis-ready outputs (Tracked)
-        ├── cchain_cdo_dengue_surveillance_ready.csv # Final merged matrix (18,880 rows x 59 cols)
-        └── cchain_model_benchmarks.csv              # Multi-model evaluation tournament metrics
+├── src/                                            # 🐍 Modular Python Source Code
+│   ├── __init__.py
+│   ├── pipeline.py                                 # Master CDO production pipeline (Phases 1-4)
+│   ├── generate_dummy_data.py                      # Synthetic CCHAIN test data generator
+│   ├── validation_runner.py                        # 5-stage validation test engine
+│   └── stress_testing.py                           # Randomized counterfactual stress-testing engine
+│
+├── tests/                                          # 🧪 Automated Test Suite (Unittest)
+│   ├── __init__.py
+│   ├── test_spatial_matrix.py                      # CDO 80-brgy W matrix topology & symmetry tests
+│   ├── test_pipeline_integration.py                # CDO end-to-end integration test on real data
+│   └── test_notebook_execution.py                  # Headless execution test for all notebook cells
+│
+├── requirements.txt                                # Comprehensive Python package dependencies
+├── README.md                                       # Main repository overview & quickstart
+├── PROJECT_SUMMARY_AND_NOTES.md                    # Quick notes & shared sheet claiming formats
+└── Project_CCHAIN_Surveillance_Pipeline.ipynb      # Root interactive notebook link
 ```
 
 ---
 
-## 📦 3. Data Sources & Schema Mapping
+## 📊 4. CDO Empirical Holdout Performance (Unseen 2019–2022 Data)
 
-The pipeline relies on the official **Project CCHAIN** dataset on Kaggle (`thinkdatasci/project-cchain`):
+The models were trained on 16 years of historical CDO climate and disease records (2003–2018; $N=15,120$) and rigorously evaluated on **4 years of unseen out-of-time CDO test data (2019–2022; $N=3,760$)**:
 
-| Dataset Table | Scope (CDO) | Primary Extracted Features | Role in Pipeline |
-| :--- | :---: | :--- | :--- |
-| `location.csv` | 80 Barangays | `adm3_pcode`, `adm4_pcode`, `adm4_en`, `brgy_total_area` | Spatial Master Index |
-| `disease_lgu_disaggregated_totals.csv` | 2,490 Rows | `case_total`, `death_total`, `date`, `disease_common_name` | Target Variable ($Y$) |
-| `climate_atmosphere.csv` | 584,400 Rows | `pr` (precipitation), `tave`, `heat_index`, `rh`, `wind_speed` | Dynamic Weather Features & Lags ($X$) |
-| `google_open_buildings.csv` | 80 Barangays | `google_bldgs_density`, `google_bldgs_pct_built_up_area` | Built-Environment Susceptibility ($Z$) |
-| `worldpop_population.csv` | 1,680 Rows | `pop_density_mean`, `pop_count_total` | Human Host Density ($Z$) |
+| Operational Lead Time | Model Architecture | CDO ROC-AUC | CDO PR-AUC | CDO Accuracy | CDO Outbreak Recall (Sensitivity) | Precision | $F_2$-Score (Public Health) | Brier Score |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **30-Day Lead ($T+1$)** | **Logistic Regression (L2)** | **0.9605** | **0.7914** | 87.71% | **91.30%** | 49.94% | **0.7832** | 0.1142 |
+| **30-Day Lead ($T+1$)** | **LightGBM Classifier** | 0.9596 | 0.7879 | **92.63%** | 72.40% | **69.03%** | 0.7170 | **0.0859** |
+| **30-Day Lead ($T+1$)** | **XGBoost Classifier** | 0.9601 | 0.7844 | 91.41% | 80.68% | 61.39% | 0.7591 | 0.0990 |
+| **30-Day Lead ($T+1$)** | **Random Forest Classifier** | 0.9571 | 0.7458 | 91.28% | 76.22% | 61.68% | 0.7279 | 0.1042 |
+| | | | | | | | | |
+| **60-Day Lead ($T+2$)** | **XGBoost Classifier** | **0.9537** | **0.7554** | **91.74%** | 73.46% | **64.31%** | 0.7143 | 0.1008 |
+| **60-Day Lead ($T+2$)** | **Logistic Regression (L2)** | 0.9526 | 0.7528 | 86.82% | **91.51%** | 48.05% | **0.7749** | 0.1263 |
+| **60-Day Lead ($T+2$)** | **Random Forest Classifier** | 0.9493 | 0.7198 | 90.39% | 80.04% | 57.82% | 0.7433 | 0.1061 |
+| **60-Day Lead ($T+2$)** | **LightGBM Classifier** | 0.9492 | 0.7333 | 91.69% | 71.76% | 64.50% | 0.7018 | **0.0916** |
 
 ---
 
-## ⚙️ 4. Prerequisites & Installation
+## 🏥 5. Prescriptive CDO Municipal Decision Matrix
 
-### A. Clone Repository & Setup Environment
+To ensure practical operational utility, model output probabilities are automatically mapped to a **3-Tier Municipal Response Protocol for CDO Local Health Authorities**:
+
+```
+┌─────────────────────────────────────────────────────────────────────────────────────────────┐
+│ Outbreak Prob (P) │ Alert Status         │ Automated CDO City Health Office (CHO) Action    │
+├───────────────────┼──────────────────────┼──────────────────────────────────────────────────┤
+│ P < 0.30          │ Level 1: Normal      │ Routine community cleanup ("4-S Strategy") and   │
+│                   │                      │ standard entomological larval index surveys.     │
+├───────────────────┼──────────────────────┼──────────────────────────────────────────────────┤
+│ 0.30 <= P < 0.65  │ Level 2: Pre-Emptive │ Targeted biological larviciding (Bti) in open    │
+│                   │ Alert                │ canals and dense container zones; mobilize BHWs  │
+│                   │                      │ for house-to-house fever surveillance.           │
+├───────────────────┼──────────────────────┼──────────────────────────────────────────────────┤
+│ P >= 0.65         │ Level 3: Critical    │ Targeted ultra-low volume (ULV) spatial fogging  │
+│                   │ Outbreak Warning     │ within 48h; pre-position 200 NS1 rapid test kits │
+│                   │                      │ at Barangay Health Center; reserve triage beds   │
+│                   │                      │ at JR Borja General Hospital and NMMC.           │
+└─────────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🚀 6. Quickstart Execution Guide
+
+### Run Master CDO Production Pipeline:
 ```bash
-git clone https://github.com/Troge-dev/Climate-Driven-Vector-Borne-Outbreak-Surveillance.git
-cd Climate-Driven-Vector-Borne-Outbreak-Surveillance
-
-# Create and activate virtual environment
-python -m venv venv
-# On Windows:
-venv\Scripts\activate
-# On Linux/macOS:
-source venv/bin/activate
-
-# Install dependencies
-pip install -r requirements.txt
+python src/pipeline.py
 ```
 
-### B. Setup Kaggle API Credentials (For Downloading Raw Data)
-Place your `kaggle.json` API token in `~/.kaggle/kaggle.json` (Linux/Mac) or `%USERPROFILE%\.kaggle\kaggle.json` (Windows).
-
----
-
-## 🚀 5. Quickstart: How to Run the Pipeline
-
-### Option 1: Automated Full Pipeline (CLI Execution)
-Runs data ingestion, space-time alignment, lag feature engineering, model training, and exports the clean dataset:
+### Run Full CDO Automated Test Suite:
 ```bash
-python cchain_pipeline.py
+python -m unittest discover -s tests -v
 ```
 
-### Option 2: Interactive Jupyter Notebook
-Open and run cells step-by-step to inspect data tables, lag graphs, and classification metrics:
+### Open Interactive CDO Surveillance Notebook:
 ```bash
-jupyter notebook Project_CCHAIN_Surveillance_Pipeline.ipynb
+jupyter notebook notebooks/01_cchain_dengue_surveillance_pipeline.ipynb
 ```
-
-
----
-
-## 📊 6. Empirical Results & Performance Evaluation
-
-The model was evaluated using an **out-of-time temporal validation split** (Train: 2003–2018 | Test: 2019–2022 across all 80 barangays):
-
-```
-Outbreak Prediction Performance (Evaluated on 2019-2022 Test Period):
-
-• ROC-AUC Score:      0.903 (90.3%)  [Outstanding Discriminative Power]
-• Overall Accuracy:   87.0%          [3,340 of 3,840 Monthly Evaluations Correct]
-• Outbreak Recall:     72.0%          [Catches 72% of Imminent Outbreaks in Advance]
-```
-
-### Top 5 Predictive Climate-Health Features:
-1. **`pop_density_mean` (35.05%)** — High human host concentration accelerating vector biting contact.
-2. **`google_bldgs_pct_built_up_area` (14.92%)** — Impervious surfaces creating artificial water collection containers.
-3. **`heat_index_mean_lag_3m` (9.39%)** — 3-month heat stress accelerating viral incubation (EIP).
-4. **`heat_index_mean_lag_2m` (6.93%)** — 2-month ambient temperature accelerating larval development.
-5. **`tave_mean_lag_1m` (5.72%)** — 1-month ambient temperature driving adult mosquito biting activity.
-
----
-
-## 🏥 7. Prescriptive LGU Decision Support Framework
-
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ Predicted Probability (P) │ Risk Level  │ Prescriptive Action Trigger       │
-├───────────────────────────┼─────────────┼───────────────────────────────────┤
-│ P < 0.30                  │ Level 1     │ Routine community cleanup &       │
-│                           │ (Normal)    │ baseline larval index monitoring. │
-├───────────────────────────┼─────────────┼───────────────────────────────────┤
-│ 0.30 <= P < 0.65          │ Level 2     │ Pre-emptive chemical larviciding  │
-│                           │ (Alert)     │ & deployment of health workers.   │
-├───────────────────────────┼─────────────┼───────────────────────────────────┤
-│ P >= 0.65                 │ Level 3     │ Immediate targeted spatial        │
-│                           │ (Outbreak)  │ fogging & hospital surge buffer.  │
-└─────────────────────────────────────────────────────────────────────────────┘
-```
-
----
-
-## 📄 8. Key Deliverables & Documentation Suite
-* 📚 [**Comprehensive Model Architecture & Methodology**](docs/model_architecture_and_methodology.md)
-* 📗 [**Dataset Data Dictionary & Lineage Guide**](docs/dataset_data_dictionary.md)
-* 📙 [**Project Summary, Analytics Stages & Defense Q&A**](docs/project_summary_and_defense_guide.md)
-* 📕 [**Pipeline Execution & Reproduction Guide**](docs/pipeline_execution_guide.md)
-* 📓 [**Interactive Jupyter Notebook**](Project_CCHAIN_Surveillance_Pipeline.ipynb)
-* 🐍 [**Automated Python Pipeline Script**](cchain_pipeline.py)
-* 📊 [**Processed 59-Feature Surveillance Matrix**](data/processed/cchain_cdo_dengue_surveillance_ready.csv)
-* 📈 [**Model Evaluation Benchmark Table**](data/processed/cchain_model_benchmarks.csv)
-
----
-
-## 👥 9. Authors & Course Metadata
-* **Course:** Data Mining & Analytics (DMA)
-* **Activity:** Laboratory Activity 1 — *Types of Data Analytics*
-* **Target Region:** City of Cagayan de Oro, Region X, Philippines
-* **Dataset Attribution:** Thinking Machines, EpiMetrics, Manila Observatory, PACSII, Wellcome Trust & Lacuna Fund.
