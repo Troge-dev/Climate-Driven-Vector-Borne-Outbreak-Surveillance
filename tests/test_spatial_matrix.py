@@ -3,26 +3,31 @@ Unit Tests: Spatial Contiguity Weights Matrix (W) Construction for Cagayan de Or
 Verifies row-stochasticity, symmetry, non-negativity, and topological adjacency for CDO's 80 Barangays.
 """
 
+import sys
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
 import unittest
 import numpy as np
 import pandas as pd
 import shapely.wkt
-from pathlib import Path
 from src.generate_dummy_data import get_project_root
+from src.pipeline import find_raw_data_dir
 
 class TestCagayanDeOroSpatialMatrix(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.base_dir = get_project_root()
-        cls.raw_dir = (
-            cls.base_dir / "data" / "cchain_raw"
-            if (cls.base_dir / "data" / "cchain_raw" / "location.csv").exists()
-            else cls.base_dir.parent / "cchain_raw"
-        )
+        cls.raw_dir = find_raw_data_dir(base_dir=cls.base_dir)
         cls.cdo_pcode = "PH104305000"
 
     def test_cdo_barangay_wkt_validity_and_geometry(self):
         """Verifies that all 80 Cagayan de Oro barangays possess valid, non-empty WKT boundary polygons."""
+        if not (self.raw_dir / "location.csv").exists():
+            self.skipTest("Real CCHAIN dataset not found in data/cchain_raw. Skipping real CDO test.")
         df_loc = pd.read_csv(self.raw_dir / "location.csv")
         cdo_pcodes = df_loc[df_loc["adm3_pcode"] == self.cdo_pcode]["adm4_pcode"].unique().tolist()
         self.assertEqual(len(cdo_pcodes), 80, f"Expected 80 CDO barangays, found {len(cdo_pcodes)}")
@@ -39,6 +44,8 @@ class TestCagayanDeOroSpatialMatrix(unittest.TestCase):
 
     def test_cdo_spatial_weights_matrix_properties(self):
         """Verifies symmetry, absence of self-loops, neighbor density, and row-stochasticity for CDO."""
+        if not (self.raw_dir / "location.csv").exists():
+            self.skipTest("Real CCHAIN dataset not found in data/cchain_raw. Skipping real CDO test.")
         df_loc = pd.read_csv(self.raw_dir / "location.csv")
         target_pcodes = sorted(df_loc[df_loc["adm3_pcode"] == self.cdo_pcode]["adm4_pcode"].unique().tolist())
         num_brgys = len(target_pcodes)

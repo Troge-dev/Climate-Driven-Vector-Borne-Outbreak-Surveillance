@@ -82,9 +82,27 @@ def create_master_pipeline_notebook(output_path: Path):
                 "plt.rcParams['font.size'] = 11\n",
                 "plt.rcParams['figure.dpi'] = 120\n",
                 "\n",
-                "# Directory Configuration (Handles execution from root or notebooks/)\n",
-                "BASE_DIR = Path.cwd().parent if Path.cwd().name == 'notebooks' else Path.cwd()\n",
-                "RAW_DATA_DIR = BASE_DIR / 'data' / 'cchain_raw' if (BASE_DIR / 'data' / 'cchain_raw' / 'location.csv').exists() else BASE_DIR.parent / 'cchain_raw'\n",
+                "# Directory Configuration (Handles execution from root, subdirectories, or notebooks/)\n",
+                "candidates_raw = [\n",
+                "    Path.cwd() / 'data' / 'cchain_raw',\n",
+                "    Path.cwd().parent / 'data' / 'cchain_raw',\n",
+                "    Path.cwd().parent.parent / 'datasets' / 'cchain_raw',\n",
+                "    Path.cwd().parent / 'datasets' / 'cchain_raw',\n",
+                "    Path.cwd() / 'datasets' / 'cchain_raw',\n",
+                "    Path('../../datasets/cchain_raw'),\n",
+                "    Path('../datasets/cchain_raw'),\n",
+                "    Path('datasets/cchain_raw'),\n",
+                "    Path('data/cchain_raw'),\n",
+                "]\n",
+                "RAW_DATA_DIR = next((c for c in candidates_raw if (c / 'location.csv').exists()), Path('data/cchain_raw'))\n",
+                "if (Path.cwd() / 'src').exists():\n",
+                "    BASE_DIR = Path.cwd()\n",
+                "elif (Path.cwd() / 'DMA' / 'Climate-Driven Vector-Borne Outbreak Surveillance' / 'src').exists():\n",
+                "    BASE_DIR = Path.cwd() / 'DMA' / 'Climate-Driven Vector-Borne Outbreak Surveillance'\n",
+                "elif (Path.cwd().parent / 'src').exists():\n",
+                "    BASE_DIR = Path.cwd().parent\n",
+                "else:\n",
+                "    BASE_DIR = Path.cwd()\n",
                 "PROCESSED_DATA_DIR = BASE_DIR / 'data' / 'processed'\n",
                 "PROCESSED_DATA_DIR.mkdir(parents=True, exist_ok=True)\n",
                 "\n",
@@ -799,9 +817,11 @@ def create_synthetic_validation_notebook(output_path: Path):
         json.dump(nb, f, indent=2)
     print(f"[SUCCESS] Wrote synthetic validation notebook to: {output_path}")
 
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
 if __name__ == "__main__":
-    nb_dir = Path("notebooks")
+    nb_dir = PROJECT_ROOT / "notebooks"
     nb_dir.mkdir(parents=True, exist_ok=True)
     create_master_pipeline_notebook(nb_dir / "01_cchain_dengue_surveillance_pipeline.ipynb")
-    create_master_pipeline_notebook(Path("Project_CCHAIN_Surveillance_Pipeline.ipynb"))
+    create_master_pipeline_notebook(PROJECT_ROOT / "Project_CCHAIN_Surveillance_Pipeline.ipynb")
     create_synthetic_validation_notebook(nb_dir / "02_synthetic_validation_and_stress_testing.ipynb")

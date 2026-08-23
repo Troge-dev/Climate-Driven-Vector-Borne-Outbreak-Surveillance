@@ -4,25 +4,29 @@ Verifies that the master CDO pipeline executes all 6 stages on real CCHAIN data 
 and achieves CDO-specific holdout validation discrimination thresholds (ROC-AUC > 0.94, Recall > 0.80).
 """
 
+import sys
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
 import unittest
 import pandas as pd
-from pathlib import Path
 from src.generate_dummy_data import get_project_root
-from src.pipeline import run_production_pipeline
+from src.pipeline import run_production_pipeline, find_raw_data_dir
 
 class TestCagayanDeOroPipelineIntegration(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.base_dir = get_project_root()
-        cls.raw_dir = (
-            cls.base_dir / "data" / "cchain_raw"
-            if (cls.base_dir / "data" / "cchain_raw" / "location.csv").exists()
-            else cls.base_dir.parent / "cchain_raw"
-        )
+        cls.raw_dir = find_raw_data_dir(base_dir=cls.base_dir)
         cls.proc_dir = cls.base_dir / "data" / "processed"
 
     def test_cdo_pipeline_execution_and_holdout_benchmarks(self):
         """Runs full CDO production pipeline and evaluates on unseen 2019-2022 CDO holdout data."""
+        if not (self.raw_dir / "location.csv").exists():
+            self.skipTest("Real CCHAIN dataset not found in data/cchain_raw. Skipping real CDO test.")
         df_benchmarks, df_ready = run_production_pipeline(
             raw_dir=self.raw_dir,
             processed_dir=self.proc_dir

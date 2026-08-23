@@ -15,13 +15,7 @@ import lightgbm as lgb
 import xgboost as xgb
 
 def get_project_root() -> Path:
-    curr = Path.cwd()
-    if (curr / "data").exists():
-        return curr
-    file_parent = Path(__file__).resolve().parent.parent
-    if (file_parent / "data").exists():
-        return file_parent
-    return curr
+    return Path(__file__).resolve().parent.parent
 
 def run_stress_testing(
     processed_dir: Path = None,

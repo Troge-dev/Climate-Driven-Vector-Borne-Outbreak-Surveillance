@@ -32,25 +32,33 @@ import lightgbm as lgb
 import xgboost as xgb
 
 def get_project_root() -> Path:
-    # Look for data/cchain_raw or marker file
-    curr = Path.cwd()
-    if (curr / "data" / "cchain_raw").exists():
-        return curr
-    file_parent = Path(__file__).resolve().parent.parent
-    if (file_parent / "data" / "cchain_raw").exists():
-        return file_parent
-    return curr
+    return Path(__file__).resolve().parent.parent
+
+def find_raw_data_dir(raw_dir: Path = None, base_dir: Path = None) -> Path:
+    if base_dir is None:
+        base_dir = get_project_root()
+    if raw_dir and (Path(raw_dir) / "location.csv").exists():
+        return Path(raw_dir)
+    candidates = [
+        raw_dir,
+        base_dir / "data" / "cchain_raw",
+        base_dir.parent.parent / "datasets" / "cchain_raw",
+        base_dir.parent / "datasets" / "cchain_raw",
+        base_dir.parent.parent / "cchain_raw",
+        base_dir.parent / "cchain_raw",
+        Path("../../datasets/cchain_raw"),
+        Path("../datasets/cchain_raw"),
+        Path("datasets/cchain_raw"),
+        Path("data/cchain_raw"),
+    ]
+    for c in candidates:
+        if c and (Path(c) / "location.csv").exists():
+            return Path(c)
+    return base_dir.parent.parent / "datasets" / "cchain_raw"
 
 def run_production_pipeline(raw_dir: Path = None, processed_dir: Path = None):
     BASE_DIR = get_project_root()
-    if raw_dir:
-        RAW_DATA_DIR = Path(raw_dir)
-    elif (BASE_DIR / "data" / "cchain_raw" / "location.csv").exists():
-        RAW_DATA_DIR = BASE_DIR / "data" / "cchain_raw"
-    elif (BASE_DIR.parent / "cchain_raw" / "location.csv").exists():
-        RAW_DATA_DIR = BASE_DIR.parent / "cchain_raw"
-    else:
-        RAW_DATA_DIR = BASE_DIR / "data" / "cchain_raw"
+    RAW_DATA_DIR = find_raw_data_dir(raw_dir, BASE_DIR)
     PROCESSED_DATA_DIR = Path(processed_dir) if processed_dir else BASE_DIR / "data" / "processed"
     DOCS_DIR = BASE_DIR / "docs"
     PROCESSED_DATA_DIR.mkdir(parents=True, exist_ok=True)
