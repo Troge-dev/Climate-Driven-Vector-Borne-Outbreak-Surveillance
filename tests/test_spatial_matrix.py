@@ -14,7 +14,11 @@ class TestCagayanDeOroSpatialMatrix(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.base_dir = get_project_root()
-        cls.raw_dir = cls.base_dir / "data" / "cchain_raw"
+        cls.raw_dir = (
+            cls.base_dir / "data" / "cchain_raw"
+            if (cls.base_dir / "data" / "cchain_raw" / "location.csv").exists()
+            else cls.base_dir.parent / "cchain_raw"
+        )
         cls.cdo_pcode = "PH104305000"
 
     def test_cdo_barangay_wkt_validity_and_geometry(self):

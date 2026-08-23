@@ -43,7 +43,14 @@ def get_project_root() -> Path:
 
 def run_production_pipeline(raw_dir: Path = None, processed_dir: Path = None):
     BASE_DIR = get_project_root()
-    RAW_DATA_DIR = Path(raw_dir) if raw_dir else BASE_DIR / "data" / "cchain_raw"
+    if raw_dir:
+        RAW_DATA_DIR = Path(raw_dir)
+    elif (BASE_DIR / "data" / "cchain_raw" / "location.csv").exists():
+        RAW_DATA_DIR = BASE_DIR / "data" / "cchain_raw"
+    elif (BASE_DIR.parent / "cchain_raw" / "location.csv").exists():
+        RAW_DATA_DIR = BASE_DIR.parent / "cchain_raw"
+    else:
+        RAW_DATA_DIR = BASE_DIR / "data" / "cchain_raw"
     PROCESSED_DATA_DIR = Path(processed_dir) if processed_dir else BASE_DIR / "data" / "processed"
     DOCS_DIR = BASE_DIR / "docs"
     PROCESSED_DATA_DIR.mkdir(parents=True, exist_ok=True)

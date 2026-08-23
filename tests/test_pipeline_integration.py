@@ -14,7 +14,11 @@ class TestCagayanDeOroPipelineIntegration(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.base_dir = get_project_root()
-        cls.raw_dir = cls.base_dir / "data" / "cchain_raw"
+        cls.raw_dir = (
+            cls.base_dir / "data" / "cchain_raw"
+            if (cls.base_dir / "data" / "cchain_raw" / "location.csv").exists()
+            else cls.base_dir.parent / "cchain_raw"
+        )
         cls.proc_dir = cls.base_dir / "data" / "processed"
 
     def test_cdo_pipeline_execution_and_holdout_benchmarks(self):

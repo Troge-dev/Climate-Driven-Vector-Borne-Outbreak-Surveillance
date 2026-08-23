@@ -84,7 +84,7 @@ def create_master_pipeline_notebook(output_path: Path):
                 "\n",
                 "# Directory Configuration (Handles execution from root or notebooks/)\n",
                 "BASE_DIR = Path.cwd().parent if Path.cwd().name == 'notebooks' else Path.cwd()\n",
-                "RAW_DATA_DIR = BASE_DIR / 'data' / 'cchain_raw'\n",
+                "RAW_DATA_DIR = BASE_DIR / 'data' / 'cchain_raw' if (BASE_DIR / 'data' / 'cchain_raw' / 'location.csv').exists() else BASE_DIR.parent / 'cchain_raw'\n",
                 "PROCESSED_DATA_DIR = BASE_DIR / 'data' / 'processed'\n",
                 "PROCESSED_DATA_DIR.mkdir(parents=True, exist_ok=True)\n",
                 "\n",
