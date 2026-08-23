@@ -1,9 +1,17 @@
 # 🦟 Cagayan de Oro City Dengue Early Warning & Outbreak Prevention System
 > **A Spatial-Temporal Climate Surveillance & Machine Learning Decision-Support Engine for the Cagayan de Oro City Local Government Unit (CDO LGU)**  
 > *Developed for the CDO City Health Office (CHO) & City Disaster Risk Reduction and Management Office (CDRRMO)*  
-> *Pilot City: Cagayan de Oro City, Northern Mindanao, Philippines (80 Barangays | 2003–2022 Longitudinal Dataset)*
+> *Pilot City: Cagayan de Oro City, Northern Mindanao, Philippines (80 Barangays | 2003–2022 Longitudinal Dataset)*  
+>
+> 🎓 **Academic Fulfillment:** **Data Mining Course — Laboratory Activity 1**  
+> 🌐 **Primary Dataset Source:** **Project CCHAIN** (*Climate Change and Health Analytics Network* | Kaggle: [`thinkdatasci/project-cchain`](https://www.kaggle.com/datasets/thinkdatasci/project-cchain))
 
 ---
+
+> [!IMPORTANT]
+> **Course & Data Attribution Notice:**
+> * **Academic Requirement:** This repository and comprehensive surveillance pipeline are submitted in fulfillment of **Data Mining Course Laboratory Activity 1**.
+> * **Data Provenance:** All primary epidemiological, meteorological, morphological, and demographic datasets utilized in this system originate from **Project CCHAIN** (*Climate Change and Health Analytics Network*), an open-access multi-partner initiative by Thinking Machines, EpiMetrics, Manila Observatory, and PACSII (funded by the Wellcome Trust & Lacuna Fund). The 35 raw CCHAIN multi-source tabular tables were localized, filtered, spatialized, and engineered for the 80 barangays of Cagayan de Oro City.
 
 ## 🏛️ 1. Project Overview & CDO LGU Operational Problem Statement
 
@@ -146,3 +154,15 @@ python -m unittest discover -s tests -v
 ```bash
 jupyter notebook notebooks/01_cchain_dengue_surveillance_pipeline.ipynb
 ```
+
+---
+
+## 📜 7. Dataset Source & Academic Course Attribution
+
+* **Course Fulfillment:** This project is prepared and submitted in fulfillment of **Data Mining Course — Laboratory Activity 1**.
+* **Primary Dataset Source:** **Project CCHAIN** (*Climate Change and Health Analytics Network*).
+  * **Repository:** Kaggle Dataset [`thinkdatasci/project-cchain`](https://www.kaggle.com/datasets/thinkdatasci/project-cchain)
+  * **Authors / Partners:** Thinking Machines, EpiMetrics, Inc., Manila Observatory, and PACSII.
+  * **Funding Agencies:** The Wellcome Trust & Lacuna Fund.
+  * **Data Constituents:** Multi-source integration of DOH epidemiological records, ECMWF ERA5-Land atmospheric reanalysis, Google Open Buildings satellite morphology, and WorldPop demographic density grids (2003–2022).
+

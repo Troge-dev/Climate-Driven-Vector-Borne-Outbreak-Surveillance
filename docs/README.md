@@ -1,6 +1,9 @@
 # 📚 Cagayan de Oro City Dengue Early Warning Documentation Portal
 > **Comprehensive Technical Documentation Suite for the CDO LGU Dengue Outbreak Surveillance Engine**  
-> *Developed for the Cagayan de Oro City Health Office (CHO) & City Disaster Risk Reduction and Management Office (CDRRMO)*
+> *Developed for the Cagayan de Oro City Health Office (CHO) & City Disaster Risk Reduction and Management Office (CDRRMO)*  
+>
+> 🎓 **Academic Fulfillment:** **Data Mining Course — Laboratory Activity 1**  
+> 🌐 **Primary Dataset Source:** **Project CCHAIN** (*Climate Change and Health Analytics Network* | Kaggle: [`thinkdatasci/project-cchain`](https://www.kaggle.com/datasets/thinkdatasci/project-cchain))
 
 ---
 
