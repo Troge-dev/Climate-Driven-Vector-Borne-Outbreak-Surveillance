@@ -12,13 +12,13 @@ def create_master_pipeline_notebook(output_path: Path):
             "cell_type": "markdown",
             "metadata": {},
             "source": [
-                "# 🦟 Climate-Driven Vector-Borne Dengue Outbreak Surveillance Engine\n",
+                "# Climate-Driven Vector-Borne Dengue Outbreak Surveillance Engine\n",
                 "### **Project CCHAIN** | *Climate Change, Health, and Artificial Intelligence in the Philippines*\n",
                 "**Laboratory Activity 1: Comprehensive Spatial-Temporal Epidemiological Pipeline**\n",
                 "\n",
                 "---\n",
                 "\n",
-                "## 📌 Executive Overview & Operational Problem Statement\n",
+                "## Executive Overview & Operational Problem Statement\n",
                 "\n",
                 "> Local Government Units (LGUs) and City Health Offices across the Philippines face severe operational challenges during seasonal dengue outbreaks. Interventions are often **reactive and delayed**, initiated only after hospital triage beds are overwhelmed. \n",
                 ">\n",
@@ -118,7 +118,7 @@ def create_master_pipeline_notebook(output_path: Path):
             "cell_type": "markdown",
             "metadata": {},
             "source": [
-                "## 🗺️ Step 1: Spatial Master Reference & Contiguity Weights Matrix ($W$)\n",
+                "## Step 1: Spatial Master Reference & Contiguity Weights Matrix ($W$)\n",
                 "\n",
                 "To model how disease outbreaks diffuse between adjacent urban communities, we parse the boundary geometries (`brgy_geography.csv`) into **Shapely WKT Polygons** and construct a row-normalized **Spatial Contiguity Weights Matrix** ($W$):\n",
                 "\n",
@@ -175,7 +175,7 @@ def create_master_pipeline_notebook(output_path: Path):
             "cell_type": "markdown",
             "metadata": {},
             "source": [
-                "## 📊 Step 2: Multi-Source Data Ingestion & Monthly Resampling\n",
+                "## Step 2: Multi-Source Data Ingestion & Monthly Resampling\n",
                 "\n",
                 "We ingest and resample high-resolution health, climate, and structural datasets to a standardized monthly space-time grid:\n",
                 "1. **Health Surveillance:** DOH/LGU disaggregated dengue morbidity records (`disease_lgu_disaggregated_totals.csv`).\n",
@@ -240,7 +240,7 @@ def create_master_pipeline_notebook(output_path: Path):
             "cell_type": "markdown",
             "metadata": {},
             "source": [
-                "## 📈 Step 3: Exploratory Data Analysis (EDA) & Biological Visualizations\n",
+                "## Step 3: Exploratory Data Analysis (EDA) & Biological Visualizations\n",
                 "\n",
                 "Before training models, we analyze the **seasonal wave patterns** and **lagged cross-correlations** between rainfall anomalies, ambient thermal stress, and dengue outbreaks."
             ]
@@ -312,7 +312,7 @@ def create_master_pipeline_notebook(output_path: Path):
             "cell_type": "markdown",
             "metadata": {},
             "source": [
-                "## ⚙️ Step 4: Space-Time Grid Alignment & Advanced Feature Engineering\n",
+                "## Step 4: Space-Time Grid Alignment & Advanced Feature Engineering\n",
                 "\n",
                 "We engineer 4 categories of epidemiological predictors without future data leakage:\n",
                 "1. **Distributed Meteorological Lags (1m, 2m, 3m, 4m):** Capturing the 4–8 week *Aedes aegypti* vector breeding and Extrinsic Incubation Period (EIP).\n",
@@ -411,7 +411,7 @@ def create_master_pipeline_notebook(output_path: Path):
             "cell_type": "markdown",
             "metadata": {},
             "source": [
-                "## 🏆 Step 5: Multi-Model Tournament & Early Warning Evaluation\n",
+                "## Step 5: Multi-Model Tournament & Early Warning Evaluation\n",
                 "\n",
                 "We evaluate across **30-Day Lead ($T+1$)** and **60-Day Lead ($T+2$)** operational horizons using a strict **Out-of-Time Temporal Holdout Split**:\n",
                 "* **Training Partition:** 2003–2018 ($N=15,120$ samples)\n",
@@ -550,7 +550,7 @@ def create_master_pipeline_notebook(output_path: Path):
             "cell_type": "markdown",
             "metadata": {},
             "source": [
-                "## 📊 Step 6: Publication-Grade Model Evaluation Visualizations\n",
+                "## Step 6: Publication-Grade Model Evaluation Visualizations\n",
                 "\n",
                 "We generate **ROC Curves**, **Precision-Recall Curves (PR-AUC)**, and **Feature Importance Plots** to evaluate diagnostic discrimination on the holdout test partition."
             ]
@@ -623,7 +623,7 @@ def create_master_pipeline_notebook(output_path: Path):
             "cell_type": "markdown",
             "metadata": {},
             "source": [
-                "## 🏥 Step 7: Prescriptive LGU Action Framework & Decision Matrix\n",
+                "## Step 7: Prescriptive LGU Action Framework & Decision Matrix\n",
                 "\n",
                 "The surveillance engine maps model output probabilities into an **Automated 3-Tier LGU Decision-Support Matrix**:\n",
                 "\n",
@@ -701,7 +701,7 @@ def create_synthetic_validation_notebook(output_path: Path):
             "cell_type": "markdown",
             "metadata": {},
             "source": [
-                "# 🧪 Synthetic Validation & Randomized Stress-Testing Notebook\n",
+                "# Synthetic Validation & Randomized Stress-Testing Notebook\n",
                 "### **Climate-Driven Vector-Borne Outbreak Surveillance Engine**\n",
                 "\n",
                 "This companion notebook allows instant validation, topology testing, and randomized counterfactual scenario evaluation using the lightweight synthetic CCHAIN dataset generator."

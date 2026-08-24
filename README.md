@@ -1,28 +1,35 @@
-# 🦟 Spatial-Temporal Dengue Outbreak Surveillance & Forecasting Engine
+# Spatial-Temporal Dengue Outbreak Surveillance and Forecasting Engine
+
+[![Python 3.10 | 3.11 | 3.12](https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![CI Suite](https://img.shields.io/badge/CI-Passing-success)](.github/workflows/tests.yml)
+[![Coursework](https://img.shields.io/badge/Coursework-Data%20Mining%20%26%20Analytics-blue)](docs/project_summary_and_defense_guide.md)
+[![Dataset](https://img.shields.io/badge/Data%20Source-Project%20CCHAIN-blueviolet)](https://www.kaggle.com/datasets/thinkdatasci/project-cchain)
+
 > **A Climate-Driven Machine Learning Decision-Support Study for Cagayan de Oro City**  
 > *Pilot Study: 80 Barangays of Cagayan de Oro City, Northern Mindanao, Philippines (2003–2022 Longitudinal Dataset)*  
 >
-> 🎓 **Academic Context:** **Data Mining Coursework — Laboratory Project**  
-> 🌐 **Primary Dataset Source:** **Project CCHAIN** (*Climate Change and Health Analytics Network* | Kaggle: [`thinkdatasci/project-cchain`](https://www.kaggle.com/datasets/thinkdatasci/project-cchain))  
-> ⚖️ **License:** MIT License  
+> **Academic Context:** Data Mining Coursework (3rd Year Computer Science / Data Science)  
+> **Primary Dataset:** Project CCHAIN (*Climate Change and Health Analytics Network* | Kaggle: [`thinkdatasci/project-cchain`](https://www.kaggle.com/datasets/thinkdatasci/project-cchain))  
+> **License:** MIT License  
 
 ---
 
 > [!NOTE]
-> **Project Scope & Academic Attribution Notice:**
-> * **Coursework Context:** This repository contains the source code, data preprocessing pipelines, and evaluation benchmarks for an academic data mining study. It is designed as an offline research and decision-support prototype, **not** an actively deployed live dispatch system for municipal government units.
+> **Project Scope and Academic Attribution:**
+> * **Coursework Context:** This repository contains the source code, data preprocessing pipelines, and evaluation benchmarks for an academic data mining study. It is designed as an offline research and decision-support prototype, not an actively deployed live dispatch system for municipal government units.
 > * **Data Provenance:** Meteorological, epidemiological, built-environment, and demographic data originate from **Project CCHAIN** (*Climate Change and Health Analytics Network*), an open-access multi-partner initiative by Thinking Machines, EpiMetrics, Manila Observatory, and PACSII (funded by the Wellcome Trust & Lacuna Fund). Multi-source tables were filtered, spatialized, and engineered for the 80 barangays of Cagayan de Oro City.
 
 ---
 
-## 🏛️ 1. Project Overview & Problem Statement
+## 1. Project Overview and Problem Statement
 
 Dengue fever is a major recurring public health concern in tropical urban centers like Cagayan de Oro City (`PH104305000`). Local health surveillance systems often encounter delayed reporting bottlenecks, where preventative vector control is initiated reactively after hospital caseloads surge.
 
 This project investigates the predictive value of combining multi-source environmental and spatial datasets to forecast localized dengue outbreak risk at **30-day ($T+1$) and 60-day ($T+2$) operational lead times**:
 * **Atmospheric Climate Reanalysis (ECMWF ERA5-Land):** Captures multi-month lag dynamics of precipitation ($Pr$), ambient temperatures ($T_{ave}, T_{min}, T_{max}$), relative humidity ($RH$), and heat index.
 * **Spatial Transmission Topology ($W$ Matrix):** Models cross-barangay transmission via a row-normalized first-order spatial contiguity matrix across CDO's 80 barangays (428 topological edges).
-* **Urban Morphology & Demographics:** Combines Google Open Buildings structural density and WorldPop population estimates to model micro-urban exposure and runoff risks.
+* **Urban Morphology and Demographics:** Combines Google Open Buildings structural density and WorldPop population estimates to model micro-urban exposure and runoff risks.
 * **Machine Learning Tournament:** Benchmarks Regularized Logistic Regression, Random Forest, LightGBM, and XGBoost using $F_2$-score threshold calibration to prioritize outbreak sensitivity.
 
 ```
@@ -40,19 +47,19 @@ This project investigates the predictive value of combining multi-source environ
 
 ---
 
-## 🗺️ 2. Geographic & Spatial Scope
+## 2. Geographic and Spatial Scope
 
 The pipeline covers all **80 barangays of Cagayan de Oro City** (`PH104305000`):
-* **Urban Lowlands & High-Density Corridors:** Carmen, Lapasan, Kauswagan, Balulang, Macasandig, Puntod, Bulua, Nazareth, Camaman-an, Gusa.
-* **Coastal & Port Districts:** Macabalan, Bonbon, Bayabas, Puerto, Tablon, Agusan.
+* **Urban Lowlands and High-Density Corridors:** Carmen, Lapasan, Kauswagan, Balulang, Macasandig, Puntod, Bulua, Nazareth, Camaman-an, Gusa.
+* **Coastal and Port Districts:** Macabalan, Bonbon, Bayabas, Puerto, Tablon, Agusan.
 * **Expanding Peri-Urban Corridors:** Upper Puerto, Lumbia, Canitoan, Iponan, Pagatpat.
-* **Upland Rural & Forested Enclaves:** Dansolihon, Besigan, Tumpagon, Pigsag-an, Tignapoloan.
+* **Upland Rural and Forested Enclaves:** Dansolihon, Besigan, Tumpagon, Pigsag-an, Tignapoloan.
 
 The boundary polygon geometries (`brgy_geography.csv`) are converted into a row-stochastic **Spatial Contiguity Weights Matrix ($W$)** representing 428 topological neighbor connections, enabling spatial lag feature engineering ($W \cdot Y$).
 
 ---
 
-## 🗂️ 3. Repository Structure
+## 3. Repository Structure
 
 ```
 Climate-Driven Vector-Borne Outbreak Surveillance/
@@ -67,7 +74,7 @@ Climate-Driven Vector-Borne Outbreak Surveillance/
 │   ├── dummy_test_city/                            # Schema-compliant synthetic test dataset (~8 MB)
 │   └── processed_dummy_test/                       # Processed synthetic benchmark outputs
 │
-├── docs/                                           # 📚 Technical Documentation & Defense Guides
+├── docs/                                           # Technical Documentation & Defense Guides
 │   ├── README.md                                   # Documentation Index
 │   ├── dataset_data_dictionary.md                  # 59-Feature Data Dictionary & Lineage
 │   ├── model_architecture_and_methodology.md       # Biology, Spatial Matrix W, ML Architectures
@@ -75,22 +82,22 @@ Climate-Driven Vector-Borne Outbreak Surveillance/
 │   ├── project_summary_and_defense_guide.md        # Defense Q&A & Conceptual Framework
 │   └── randomized_model_stress_test_report.md      # Counterfactual & Noise Robustness Audit
 │
-├── notebooks/                                      # 📓 Interactive Jupyter Notebooks
+├── notebooks/                                      # Interactive Jupyter Notebooks
 │   ├── 01_cchain_dengue_surveillance_pipeline.ipynb    # CDO pipeline with plots & analysis
 │   └── 02_synthetic_validation_and_stress_testing.ipynb # Standalone synthetic validation notebook
 │
-├── scripts/                                        # 🛠️ Utility Scripts
+├── scripts/                                        # Utility Scripts
 │   ├── create_notebooks.py                         # Generates annotated notebooks
 │   └── verify_reproducibility.py                   # Data provenance & checksum verification
 │
-├── src/                                            # 🐍 Modular Python Source Code
+├── src/                                            # Modular Python Source Code
 │   ├── __init__.py
 │   ├── pipeline.py                                 # Master CDO production pipeline
 │   ├── generate_dummy_data.py                      # Synthetic CCHAIN test data generator
 │   ├── validation_runner.py                        # 5-stage synthetic validation engine
 │   └── stress_testing.py                           # Monte Carlo & perturbation stress-tester
 │
-├── tests/                                          # 🧪 Automated Test Suite (Unittest)
+├── tests/                                          # Automated Test Suite (Unittest)
 │   ├── __init__.py
 │   ├── test_target_leakage.py                      # Unit tests for pre-2019 threshold invariance
 │   ├── test_dummy_data_integration.py              # End-to-end pipeline test on synthetic data
@@ -98,7 +105,7 @@ Climate-Driven Vector-Borne Outbreak Surveillance/
 │   ├── test_pipeline_integration.py                # CDO real-data integration test (if present)
 │   └── test_notebook_execution.py                  # Headless execution test for all notebook cells
 │
-├── .gitattributes                                  # Large CSV tracking configuration
+├── .gitattributes                                  # Line endings & large CSV tracking configuration
 ├── .gitignore
 ├── LICENSE                                         # MIT License
 ├── requirements.txt                                # Python package dependencies
@@ -107,7 +114,7 @@ Climate-Driven Vector-Borne Outbreak Surveillance/
 
 ---
 
-## 📊 4. Empirical Holdout Performance (Unseen 2019–2022 Data)
+## 4. Empirical Holdout Performance (Unseen 2019–2022 Data)
 
 Models are trained on 16 years of historical CDO climate and disease records (2003–2018; $N=15,120$) and evaluated on **4 years of strictly out-of-time test data (2019–2022; $N=3,760$)** with zero future target leakage:
 
@@ -127,7 +134,7 @@ Models are trained on 16 years of historical CDO climate and disease records (20
 
 ---
 
-## 🏥 5. Conceptual Decision-Support Matrix
+## 5. Conceptual Decision-Support Matrix
 
 To illustrate how model probabilities could inform municipal health protocols, output scores can be mapped to a conceptual 3-tier advisory framework:
 
@@ -148,7 +155,10 @@ To illustrate how model probabilities could inform municipal health protocols, o
 
 ---
 
-## ⚠️ 6. Limitations & Methodological Considerations
+## 6. Limitations and Methodological Considerations
+
+> [!WARNING]
+> **Key Epidemiological & Operational Caveats:**
 
 1. **Target Leakage Remediation:**
    In earlier iterations, the per-barangay 75th percentile outbreak threshold was computed across the full 2003–2022 dataset, allowing future test distribution statistics to influence past label definitions. In the current implementation, the 75th percentile threshold (with a 5-case minimum floor) is **computed strictly from the pre-2019 training subset** and frozen across all evaluation periods.
@@ -161,43 +171,43 @@ To illustrate how model probabilities could inform municipal health protocols, o
 
 ---
 
-## 🚀 7. Quickstart Guide
+## 7. Quickstart Guide
 
-### 1. Environment Setup:
+### 1. Environment Setup
 ```bash
 git clone https://github.com/Troge-dev/Climate-Driven-Vector-Borne-Outbreak-Surveillance.git
 cd Climate-Driven-Vector-Borne-Outbreak-Surveillance
 pip install -r requirements.txt
 ```
 
-### 2. Run Automated Test Suite (Uses Synthetic Data):
+### 2. Run Automated Test Suite (Uses Synthetic Data)
 ```bash
 python -m unittest discover -s tests -v
 ```
 
-### 3. Verify Data Provenance & Reproducibility:
+### 3. Verify Data Provenance and Reproducibility
 ```bash
 python scripts/verify_reproducibility.py
 ```
 
-### 4. Run Full Pipeline (Requires Raw CCHAIN Data or Generates Processed Outputs):
+### 4. Run Full Production Pipeline
 ```bash
 python src/pipeline.py
 ```
 
-### 5. Launch Interactive Analysis Notebook:
+### 5. Launch Interactive Analysis Notebook
 ```bash
 jupyter notebook notebooks/01_cchain_dengue_surveillance_pipeline.ipynb
 ```
 
 ---
 
-## 📜 8. Dataset Attribution & References
+## 8. Dataset Attribution and References
 
 * **Primary Dataset:** **Project CCHAIN** (*Climate Change and Health Analytics Network*)
-  * Kaggle: [`thinkdatasci/project-cchain`](https://www.kaggle.com/datasets/thinkdatasci/project-cchain)
-  * Consortium: Thinking Machines, EpiMetrics Inc., Manila Observatory, PACSII.
-  * Funding: Wellcome Trust & Lacuna Fund.
+  * **Repository:** Kaggle Dataset [`thinkdatasci/project-cchain`](https://www.kaggle.com/datasets/thinkdatasci/project-cchain)
+  * **Consortium:** Thinking Machines, EpiMetrics Inc., Manila Observatory, PACSII.
+  * **Funding:** Wellcome Trust & Lacuna Fund.
 * **Atmospheric Data:** ECMWF ERA5-Land Monthly Reanalysis (C3S / Copernicus).
 * **Built Environment:** Google Open Buildings Dataset (V3).
 * **Demographics:** WorldPop Spatial Demographic Datasets (University of Southampton).

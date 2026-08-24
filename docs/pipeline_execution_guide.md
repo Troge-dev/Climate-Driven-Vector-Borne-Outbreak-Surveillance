@@ -4,9 +4,9 @@ This guide provides step-by-step instructions to execute, reproduce, and validat
 
 ---
 
-## 🛠️ 1. Environment Setup
+## 1. Environment Setup
 
-Ensure Python 3.9+ is installed. Then set up your virtual environment and dependencies:
+Ensure Python 3.10+ is installed. Then set up your virtual environment and dependencies:
 
 ```bash
 # Clone the repository
@@ -28,12 +28,12 @@ pip install -r requirements.txt
 
 ---
 
-## 📂 2. Directory Architecture
+## 2. Directory Architecture
 
 ```
 Climate-Driven Vector-Borne Outbreak Surveillance/
 ├── data/
-│   ├── cchain_raw/                                 # Raw Kaggle CSV tables
+│   ├── cchain_raw/                                 # Raw Kaggle CSV tables (gitignored)
 │   ├── processed/                                  # Production CDO engineered datasets
 │   ├── dummy_test_city/                            # Synthetic validation test suite
 │   └── processed_dummy_test/                       # Processed synthetic outputs
@@ -41,12 +41,17 @@ Climate-Driven Vector-Borne Outbreak Surveillance/
 ├── notebooks/                                      # Interactive Jupyter Notebooks
 │   ├── 01_cchain_dengue_surveillance_pipeline.ipynb
 │   └── 02_synthetic_validation_and_stress_testing.ipynb
+├── scripts/                                        # Reproducibility and notebook generator scripts
+│   ├── create_notebooks.py
+│   └── verify_reproducibility.py
 ├── src/                                            # Modular Python source code
 │   ├── pipeline.py                                 # Master production pipeline
 │   ├── generate_dummy_data.py                      # Synthetic dataset generator
 │   ├── validation_runner.py                        # Validation suite runner
 │   └── stress_testing.py                           # Stress-testing & counterfactual engine
 └── tests/                                          # Automated unit & integration tests
+    ├── test_target_leakage.py
+    ├── test_dummy_data_integration.py
     ├── test_spatial_matrix.py
     ├── test_pipeline_integration.py
     └── test_notebook_execution.py
@@ -54,40 +59,36 @@ Climate-Driven Vector-Borne Outbreak Surveillance/
 
 ---
 
-## 🚀 3. Execution Workflows
+## 3. Execution Workflows
 
 ### Option A: Run Full Production Pipeline (Cagayan de Oro Dataset)
 Executes spatial matrix construction, multi-month lag engineering, multi-model tournament, and threshold optimization:
 ```bash
 python src/pipeline.py
 ```
-* **Output 1:** [`data/processed/cchain_cdo_dengue_surveillance_ready.csv`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/Climate-Driven%20Vector-Borne%20Outbreak%20Surveillance/data/processed/cchain_cdo_dengue_surveillance_ready.csv)
-* **Output 2:** [`data/processed/cchain_model_benchmarks.csv`](file:///c:/Users/manda/OneDrive/Documents/3rd%20YEAR%20PROJ/Climate-Driven%20Vector-Borne%20Outbreak%20Surveillance/data/processed/cchain_model_benchmarks.csv)
+* **Output 1:** [`data/processed/cchain_cdo_dengue_surveillance_ready.csv`](../data/processed/cchain_cdo_dengue_surveillance_ready.csv)
+* **Output 2:** [`data/processed/cchain_model_benchmarks.csv`](../data/processed/cchain_model_benchmarks.csv)
 
 ---
 
-### Option B: Run Synthetic Validation & Stress-Testing Suite
+### Option B: Verify Data Provenance & Reproducibility
 ```bash
-# 1. Generate synthetic test city tables
-python src/generate_dummy_data.py
-
-# 2. Run automated validation runner
-python src/validation_runner.py
-
-# 3. Run randomized counterfactual & noise stress tests
-python src/stress_testing.py
+python scripts/verify_reproducibility.py
 ```
+Validates SHA-256 hashes, dataset schemas, and bitwise/numerical equivalence against source.
 
 ---
 
-### Option C: Run Full Automated Test Suite
+### Option C: Run Full Automated Test Suite (Uses Synthetic Data)
 ```bash
-python -m unittest discover -s tests
+python -m unittest discover -s tests -v
 ```
-Runs 3 comprehensive test suites:
-1. `test_spatial_matrix.py`: Verifies $W$ matrix row-stochasticity, adjacency symmetry, and geometry validity.
-2. `test_pipeline_integration.py`: Verifies end-to-end pipeline execution and holdout ROC-AUC metrics.
-3. `test_notebook_execution.py`: Verifies headless execution of all code cells in both notebooks.
+Runs 5 comprehensive test suites:
+1. `test_target_leakage.py`: Verifies temporal threshold invariance against post-2019 test data.
+2. `test_dummy_data_integration.py`: Verifies end-to-end pipeline execution on synthetic data.
+3. `test_spatial_matrix.py`: Verifies $W$ matrix row-stochasticity, adjacency symmetry, and geometry validity.
+4. `test_pipeline_integration.py`: Verifies CDO real-data execution and holdout ROC-AUC metrics (if data present).
+5. `test_notebook_execution.py`: Verifies headless execution of all code cells in both notebooks.
 
 ---
 
@@ -101,4 +102,4 @@ Features included in the notebook:
 * Cross-correlation lag structure bar charts ($t-0$ to $t-6$ months).
 * Multi-model ROC Curves and Precision-Recall Curves (PR-AUC).
 * Top Gini feature importance rankings.
-* Automated real-time LGU prescriptive dispatch schedule.
+* Automated prescriptive decision matrix mapping.
