@@ -21,6 +21,14 @@ The system evaluates 30-day and 60-day operational early warnings across all **8
 docs/
 ├── README.md                              <-- Master Documentation Index
 │
+├── lab1_analytical_report_submission.md   <-- Lab 1 Analytical Report (Primary Submission):
+│                                              - Topic claiming text for shared class sheet
+│                                              - 2-3 sentence core scenario & problem statement
+│                                              - 8 analytical questions covering the 4 types of analytics
+│                                              - Simple-English methodologies & key findings
+│                                              - 10-minute presentation slide outline (LAB 1 - PPT)
+│                                              - 300-500 word contribution essay (LAB 1 - CONTRIBUTION)
+│
 ├── model_architecture_and_methodology.md  <-- Technical and Biological Guide:
 │                                              - Vector biology & Extrinsic Incubation Period (EIP)
 │                                              - CDO 80-Barangay Spatial Contiguity Matrix W (428 edges)
@@ -62,6 +70,7 @@ docs/
 
 | Document | Purpose | Key Content |
 | :--- | :--- | :--- |
+| [**Lab 1 Analytical Report**](lab1_analytical_report_submission.md) | Primary Coursework Submission | 4 stages of analytics, simple English Q&A, slide outline, and individual essay. |
 | [**Model Architecture & Methodology**](model_architecture_and_methodology.md) | In-depth technical breakdown | Spatial contiguity $W$, non-linear lag biology, 4 ML classifiers, $F_2$-optimization, empirical holdout metrics. |
 | [**Dataset Data Dictionary**](dataset_data_dictionary.md) | Complete attribute guide | 59 features, formulas, physical units, missing value imputation, and spatial granularity. |
 | [**Project Summary & Defense Guide**](project_summary_and_defense_guide.md) | High-level summary & defense | 4 stages of data analytics, problem statements, expected panel questions, and model answers. |

@@ -75,6 +75,7 @@ Climate-Driven Vector-Borne Outbreak Surveillance/
 │
 ├── docs/                                           # Technical Documentation & Defense Guides
 │   ├── README.md                                   # Documentation Index
+│   ├── lab1_analytical_report_submission.md        # Lab 1 Analytical Report (Primary Submission)
 │   ├── dataset_data_dictionary.md                  # 59-Feature Data Dictionary & Lineage
 │   ├── model_architecture_and_methodology.md       # Biology, Spatial Matrix W, ML Architectures
 │   ├── pipeline_execution_guide.md                 # Step-by-Step Reproduction Guide
