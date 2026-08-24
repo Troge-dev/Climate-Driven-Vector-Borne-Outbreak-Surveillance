@@ -35,15 +35,13 @@ Climate-Driven Vector-Borne Outbreak Surveillance/
 ├── data/
 │   ├── cchain_raw/                                 # Raw Kaggle CSV tables (gitignored)
 │   ├── processed/                                  # Production CDO engineered datasets
-│   ├── dummy_test_city/                            # Synthetic validation test suite
-│   └── processed_dummy_test/                       # Processed synthetic outputs
+│   └── dummy_test_city/                            # Synthetic validation test suite
 ├── docs/                                           # Technical documentation suite
 ├── notebooks/                                      # Interactive Jupyter Notebooks
 │   ├── 01_cchain_dengue_surveillance_pipeline.ipynb
 │   └── 02_synthetic_validation_and_stress_testing.ipynb
-├── scripts/                                        # Reproducibility and notebook generator scripts
-│   ├── create_notebooks.py
-│   └── verify_reproducibility.py
+├── scripts/                                        # Notebook generator scripts
+│   └── create_notebooks.py
 ├── src/                                            # Modular Python source code
 │   ├── pipeline.py                                 # Master production pipeline
 │   ├── generate_dummy_data.py                      # Synthetic dataset generator
@@ -61,8 +59,8 @@ Climate-Driven Vector-Borne Outbreak Surveillance/
 
 ## 3. Execution Workflows
 
-### Option A: Run Full Production Pipeline (Cagayan de Oro Dataset)
-Executes spatial matrix construction, multi-month lag engineering, multi-model tournament, and threshold optimization:
+### Option A: Run Full Production Pipeline
+Executes spatial matrix construction, multi-month lag engineering, multi-model tournament, and threshold optimization (falls back to synthetic data if raw CCHAIN tables are not present):
 ```bash
 python src/pipeline.py
 ```
@@ -71,15 +69,7 @@ python src/pipeline.py
 
 ---
 
-### Option B: Verify Data Provenance & Reproducibility
-```bash
-python scripts/verify_reproducibility.py
-```
-Validates SHA-256 hashes, dataset schemas, and bitwise/numerical equivalence against source.
-
----
-
-### Option C: Run Full Automated Test Suite (Uses Synthetic Data)
+### Option B: Run Full Automated Test Suite (Uses Synthetic Data)
 ```bash
 python -m unittest discover -s tests -v
 ```
@@ -92,7 +82,7 @@ Runs 5 comprehensive test suites:
 
 ---
 
-### Option D: Interactive Jupyter Notebooks
+### Option C: Interactive Jupyter Notebooks
 Launch Jupyter Notebook to inspect step-by-step visual analytics:
 ```bash
 jupyter notebook notebooks/01_cchain_dengue_surveillance_pipeline.ipynb

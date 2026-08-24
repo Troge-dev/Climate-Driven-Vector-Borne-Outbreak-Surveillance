@@ -71,8 +71,7 @@ Climate-Driven Vector-Borne Outbreak Surveillance/
 │   ├── processed/                                  # Production CDO engineered datasets & benchmarks
 │   │   ├── cchain_cdo_dengue_surveillance_ready.csv # Master CDO matrix (18,880 rows x 59 columns)
 │   │   └── cchain_model_benchmarks.csv              # Multi-model evaluation tournament metrics
-│   ├── dummy_test_city/                            # Schema-compliant synthetic test dataset (~8 MB)
-│   └── processed_dummy_test/                       # Processed synthetic benchmark outputs
+│   └── dummy_test_city/                            # Schema-compliant synthetic test dataset (~8 MB)
 │
 ├── docs/                                           # Technical Documentation & Defense Guides
 │   ├── README.md                                   # Documentation Index
@@ -87,8 +86,7 @@ Climate-Driven Vector-Borne Outbreak Surveillance/
 │   └── 02_synthetic_validation_and_stress_testing.ipynb # Standalone synthetic validation notebook
 │
 ├── scripts/                                        # Utility Scripts
-│   ├── create_notebooks.py                         # Generates annotated notebooks
-│   └── verify_reproducibility.py                   # Data provenance & checksum verification
+│   └── create_notebooks.py                         # Generates annotated notebooks
 │
 ├── src/                                            # Modular Python Source Code
 │   ├── __init__.py
@@ -185,17 +183,12 @@ pip install -r requirements.txt
 python -m unittest discover -s tests -v
 ```
 
-### 3. Verify Data Provenance and Reproducibility
-```bash
-python scripts/verify_reproducibility.py
-```
-
-### 4. Run Full Production Pipeline
+### 3. Run Production Pipeline (or Synthetic Fallback)
 ```bash
 python src/pipeline.py
 ```
 
-### 5. Launch Interactive Analysis Notebook
+### 4. Launch Interactive Analysis Notebook
 ```bash
 jupyter notebook notebooks/01_cchain_dengue_surveillance_pipeline.ipynb
 ```

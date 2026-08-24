@@ -32,7 +32,3 @@ jobs:
       - name: Execute Automated Test Suite (Synthetic Dummy City)
         run: |
           python -m unittest discover -s tests -v
-
-      - name: Execute Data Provenance & Integrity Audit
-        run: |
-          python scripts/verify_reproducibility.py

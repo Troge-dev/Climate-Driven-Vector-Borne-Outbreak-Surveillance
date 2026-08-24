@@ -33,5 +33,9 @@ kaggle.json
 data/cchain_raw/*
 !data/cchain_raw/.gitkeep
 
+# Transient Test Run Artifacts
+data/processed_dummy_test/
+
 # Logs
 *.log
+

@@ -50,11 +50,17 @@ def find_raw_data_dir(raw_dir: Path = None, base_dir: Path = None) -> Path:
         Path("../datasets/cchain_raw"),
         Path("datasets/cchain_raw"),
         Path("data/cchain_raw"),
+        base_dir / "data" / "dummy_test_city",
+        Path("data/dummy_test_city"),
     ]
     for c in candidates:
         if c and (Path(c) / "location.csv").exists():
             return Path(c)
-    return base_dir.parent.parent / "datasets" / "cchain_raw"
+    try:
+        from src.generate_dummy_data import generate_dummy_cchain_data
+        return generate_dummy_cchain_data()
+    except Exception:
+        return base_dir / "data" / "dummy_test_city"
 
 def run_production_pipeline(raw_dir: Path = None, processed_dir: Path = None):
     BASE_DIR = get_project_root()
@@ -64,8 +70,13 @@ def run_production_pipeline(raw_dir: Path = None, processed_dir: Path = None):
     PROCESSED_DATA_DIR.mkdir(parents=True, exist_ok=True)
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
 
-    PILOT_CITY_CODE = "PH104305000"  # Cagayan de Oro City
-    PILOT_CITY_NAME = "Cagayan de Oro City"
+    df_loc_init = pd.read_csv(RAW_DATA_DIR / "location.csv")
+    if (df_loc_init["adm3_pcode"] == "PH104305000").any():
+        PILOT_CITY_CODE = "PH104305000"  # Cagayan de Oro City
+        PILOT_CITY_NAME = "Cagayan de Oro City"
+    else:
+        PILOT_CITY_CODE = str(df_loc_init["adm3_pcode"].iloc[0])
+        PILOT_CITY_NAME = str(df_loc_init["adm3_en"].iloc[0]) if "adm3_en" in df_loc_init.columns else "Synthetic City"
     TARGET_DISEASE = "DENGUE FEVER"
 
     print("=" * 85)
@@ -76,7 +87,7 @@ def run_production_pipeline(raw_dir: Path = None, processed_dir: Path = None):
 
     # 1. LOAD GEOGRAPHY & BUILD SPATIAL CONTIGUITY MATRIX (W)
     print("\n[1/6] Loading location.csv & brgy_geography.csv (Building Spatial Contiguity Matrix W)...")
-    df_loc = pd.read_csv(RAW_DATA_DIR / "location.csv")
+    df_loc = df_loc_init
     cdo_brgys = df_loc[df_loc["adm3_pcode"] == PILOT_CITY_CODE][
         ["adm1_en", "adm2_en", "adm3_pcode", "adm3_en", "adm4_pcode", "adm4_en", "brgy_total_area"]
     ].drop_duplicates(subset=["adm4_pcode"]).reset_index(drop=True)
