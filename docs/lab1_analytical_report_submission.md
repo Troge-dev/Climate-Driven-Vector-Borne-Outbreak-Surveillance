@@ -145,43 +145,4 @@ Below are 8 clear analytical questions spanning the four stages of analytics, wr
 * **Data Visualization:** `matplotlib`, `seaborn`
 * **Testing & Quality Assurance:** Python `unittest` (9 automated tests verifying zero data leakage, spatial matrix symmetry, and notebook execution)
 
----
 
-## 6. Slide Outline for 10-Minute Presentation Defense (`LAB 1 - PPT`)
-
-When presenting this study next Saturday, follow this 8-slide structure:
-
-* **Slide 1: Title & Team Information**
-  * Project Title: *Climate-Driven Vector-Borne Dengue Outbreak Surveillance for Cagayan de Oro City*
-  * Course: *Data Mining and Applications (DMA)*
-* **Slide 2: The Core Problem (Reactive vs. Proactive)**
-  * The problem: Interventions happen after hospitals are full.
-  * The solution: Predicting risk 30–60 days early using 20 years of climate, building, and health data.
-* **Slide 3: Descriptive Analytics (What Happened?)**
-  * 20-year trend showing seasonal surges from July to October.
-  * Map showing over 52% of cases in Carmen, Lapasan, Kauswagan, and Balulang.
-* **Slide 4: Diagnostic Analytics (Why Did It Happen?)**
-  * Biological lag: 1-to-2 month delay between rain/heat spikes and hospital cases.
-  * Urban factor: Concrete surfaces and crowded homes multiply mosquito breeding.
-* **Slide 5: Spatial Contiguity & Neighbor Transmission ($W$ Matrix)**
-  * How adjacent barangays spread risk across 428 shared borders.
-* **Slide 6: Predictive Analytics (Machine Learning Tournament)**
-  * Benchmark table showing Logistic Regression (91.7% Recall) and LightGBM (72.3% Precision, 93.1% Accuracy).
-  * Why 50.5% precision is a 10x improvement over the 5% baseline rate.
-* **Slide 7: Prescriptive Analytics (3-Tier LGU Decision Matrix)**
-  * Level 1 (Normal), Level 2 (Larvicide & Community Check), Level 3 (Fogging & Hospital Prep).
-* **Slide 8: Conclusion & Summary**
-  * The value of moving from descriptive charts to automated prescriptive public health action.
-
----
-
-## 7. Individual Contribution Essay Template (`LAB 1 - CONTRIBUTION`)
-*(Word count: ~380 words — customize with your name and specific tasks)*
-
-> During Laboratory Activity 1 for Data Mining and Applications (DMA), I contributed to formulating the research narrative and structuring the four types of data analytics using the Project CCHAIN dataset for Cagayan de Oro City. 
->
-> For the descriptive and diagnostic analytics phases, I helped analyze the 20-year historical dataset covering 80 barangays from 2003 to 2022. I assisted in identifying the seasonal peaks that occur during the southwest monsoon season and examined the biological lag relationship showing why rainfall and heat anomalies create case surges 4 to 8 weeks later. I also reviewed how satellite building footprints from Google Open Buildings and population density from WorldPop explain why dense lowland barangays like Carmen, Lapasan, and Balulang face higher risks than rural upland areas.
->
-> For the predictive modeling component, I helped formulate the multi-horizon forecasting setup comparing 30-day and 60-day early warning windows. I reviewed the performance of the four machine learning models (Logistic Regression, Random Forest, LightGBM, and XGBoost) and supported the use of $F_2$-score threshold optimization, which prioritizes catching true outbreaks to minimize missed public health emergencies. I also verified that the outbreak threshold was computed strictly on pre-2019 training data to prevent future target leakage.
->
-> Finally, for the prescriptive analytics phase, I contributed to mapping model output probabilities into a practical 3-tier municipal decision matrix (Level 1 Normal, Level 2 Pre-emptive Alert, and Level 3 Outbreak Warning). This framework provides concrete guidelines for local health officials to distribute rapid test kits, deploy larvicide teams, and prepare hospital triage capacity before hospital surges occur. Through this activity, I gained practical experience in applying data mining concepts to solve real-world public health challenges.
