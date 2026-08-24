@@ -2,7 +2,7 @@
 
 > **Comprehensive Technical Documentation Suite for the CDO Dengue Outbreak Surveillance Engine**  
 >
-> **Academic Context:** Data Mining Coursework — Laboratory Project  
+> **Academic Context:** Data Mining and Applications (DMA) — Laboratory Project  
 > **Primary Dataset Source:** Project CCHAIN (*Climate Change and Health Analytics Network* | Kaggle: [`thinkdatasci/project-cchain`](https://www.kaggle.com/datasets/thinkdatasci/project-cchain))  
 
 ---

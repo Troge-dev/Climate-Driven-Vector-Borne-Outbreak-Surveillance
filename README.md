@@ -3,13 +3,13 @@
 [![Python 3.10 | 3.11 | 3.12](https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![CI Suite](https://img.shields.io/badge/CI-Passing-success)](.github/workflows/tests.yml)
-[![Coursework](https://img.shields.io/badge/Coursework-Data%20Mining%20%26%20Analytics-blue)](docs/project_summary_and_defense_guide.md)
+[![Coursework](https://img.shields.io/badge/Coursework-Data%20Mining%20and%20Applications-blue)](docs/project_summary_and_defense_guide.md)
 [![Dataset](https://img.shields.io/badge/Data%20Source-Project%20CCHAIN-blueviolet)](https://www.kaggle.com/datasets/thinkdatasci/project-cchain)
 
 > **A Climate-Driven Machine Learning Decision-Support Study for Cagayan de Oro City**  
 > *Pilot Study: 80 Barangays of Cagayan de Oro City, Northern Mindanao, Philippines (2003–2022 Longitudinal Dataset)*  
 >
-> **Academic Context:** Data Mining Coursework (3rd Year Computer Science / Data Science)  
+> **Academic Context:** Data Mining and Applications (DMA) — Laboratory Project  
 > **Primary Dataset:** Project CCHAIN (*Climate Change and Health Analytics Network* | Kaggle: [`thinkdatasci/project-cchain`](https://www.kaggle.com/datasets/thinkdatasci/project-cchain))  
 > **License:** MIT License  
 
@@ -17,7 +17,7 @@
 
 > [!NOTE]
 > **Project Scope and Academic Attribution:**
-> * **Coursework Context:** This repository contains the source code, data preprocessing pipelines, and evaluation benchmarks for an academic data mining study. It is designed as an offline research and decision-support prototype, not an actively deployed live dispatch system for municipal government units.
+> * **Coursework Context:** This repository contains the source code, data preprocessing pipelines, and evaluation benchmarks for the **Data Mining and Applications (DMA)** course project. It is designed as an offline research and decision-support prototype, not an actively deployed live dispatch system for municipal government units.
 > * **Data Provenance:** Meteorological, epidemiological, built-environment, and demographic data originate from **Project CCHAIN** (*Climate Change and Health Analytics Network*), an open-access multi-partner initiative by Thinking Machines, EpiMetrics, Manila Observatory, and PACSII (funded by the Wellcome Trust & Lacuna Fund). Multi-source tables were filtered, spatialized, and engineered for the 80 barangays of Cagayan de Oro City.
 
 ---

@@ -1,7 +1,7 @@
 # Cagayan de Oro City Dengue Early Warning and Surveillance Study
 ## Laboratory Activity 1: 4 Stages of Data Analytics & Oral Defense Guide
 
-> **Course Context**: Data Mining & Analytics (DMA) — Laboratory Activity 1: Types of Data Analytics  
+> **Course Context**: Data Mining and Applications (DMA) — Laboratory Activity 1: Types of Data Analytics  
 > **Topic Title**: Climate-Driven Vector-Borne Dengue Outbreak Surveillance & Decision Support for Cagayan de Oro City  
 > **Pilot Study**: Cagayan de Oro City, Northern Mindanao, Philippines (PSA Code: `PH104305000` | 80 Barangays)  
 > **Data Repository**: Project CCHAIN (Thinking Machines, EpiMetrics, Manila Observatory, PACSII, Wellcome Trust, Lacuna Fund)  

@@ -14,7 +14,7 @@ def create_master_pipeline_notebook(output_path: Path):
             "source": [
                 "# Climate-Driven Vector-Borne Dengue Outbreak Surveillance Engine\n",
                 "### **Project CCHAIN** | *Climate Change, Health, and Artificial Intelligence in the Philippines*\n",
-                "**Laboratory Activity 1: Comprehensive Spatial-Temporal Epidemiological Pipeline**\n",
+                "**Data Mining and Applications (DMA) — Comprehensive Spatial-Temporal Epidemiological Pipeline**\n",
                 "\n",
                 "---\n",
                 "\n",
