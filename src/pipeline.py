@@ -178,10 +178,16 @@ def run_production_pipeline(raw_dir: Path = None, processed_dir: Path = None):
     df_merged["dengue_deaths"] = df_merged["dengue_deaths"].fillna(0).astype(int)
     df_merged["pop_density_imputed"] = df_merged["pop_count_total"] / df_merged["brgy_total_area"]
 
-    # Outbreak Ground Truth Definition: 75th percentile per barangay (min floor 5 cases)
-    df_merged["brgy_p75_threshold"] = df_merged.groupby("adm4_pcode")["dengue_cases"].transform(
-        lambda x: max(5.0, float(x.quantile(0.75)))
+    # Outbreak Ground Truth Definition: 75th percentile per barangay strictly computed on pre-2019 training data
+    # (prevents future test-period target leakage while enforcing min floor of 5 cases)
+    train_slice = df_merged[df_merged["date"] < "2019-01-01"]
+    p75_training_thresholds = (
+        train_slice.groupby("adm4_pcode")["dengue_cases"]
+        .quantile(0.75)
+        .apply(lambda q: max(5.0, float(q)))
+        .to_dict()
     )
+    df_merged["brgy_p75_threshold"] = df_merged["adm4_pcode"].map(p75_training_thresholds).fillna(5.0)
     df_merged["is_outbreak"] = (df_merged["dengue_cases"] >= df_merged["brgy_p75_threshold"]).astype(int)
 
     df_merged = df_merged.sort_values(by=["adm4_pcode", "date"]).reset_index(drop=True)

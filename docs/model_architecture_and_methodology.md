@@ -263,36 +263,34 @@ $$F_2 = 5 \cdot \frac{\text{Precision} \times \text{Recall}}{4 \cdot \text{Preci
 
 $$\tau^* = \arg\max_{\tau \in [0.05, 0.95]} F_2(\text{Train}, \tau)$$
 
-The optimal threshold $\tau^*$ is discovered strictly on the training partition and subsequently applied unchanged to the unseen test partition.
-
----
+The optimal threshold $\tau^*$ is discovered strictly on the training partition and applied unchanged to the unseen test partition.
 
 ## 8. Empirical Benchmark Results
 
-Evaluated on the **3,840 unseen holdout samples (2019–2022)** across all 80 barangays of Cagayan de Oro:
+Evaluated on the **3,760 unseen holdout samples (2019–2022)** across all 80 barangays of Cagayan de Oro:
 
 ### 8.1 Benchmark Performance Table
 
 | Operational Horizon | Model Architecture | ROC-AUC | PR-AUC | Optimal Threshold ($\tau^*$) | $F_2$-Score (Opt) | $F_1$-Score (Opt) | Outbreak Recall | Precision | Brier Score |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **30-Day Early Warning ($T+1$)** | **Logistic Regression (L2)** | **0.9605** | **0.7914** | `0.65` | **0.7832** | 0.6456 | **91.30%** | 49.94% | 0.1142 |
-| 30-Day Early Warning ($T+1$) | **LightGBM Classifier** | 0.9596 | 0.7879 | `0.90` | 0.7170 | **0.7067** | 72.40% | **69.03%** | **0.0859** |
-| 30-Day Early Warning ($T+1$) | **XGBoost Classifier** | 0.9601 | 0.7844 | `0.89` | 0.7591 | 0.6972 | 80.68% | 61.39% | 0.0990 |
-| 30-Day Early Warning ($T+1$) | **Random Forest Classifier** | 0.9571 | 0.7458 | `0.86` | 0.7279 | 0.6819 | 76.22% | 61.68% | 0.1042 |
-| **60-Day Early Warning ($T+2$)** | **XGBoost Classifier** | **0.9537** | **0.7554** | `0.91` | 0.7143 | **0.6858** | 73.46% | **64.31%** | **0.1008** |
-| 60-Day Early Warning ($T+2$) | **Logistic Regression (L2)** | 0.9526 | 0.7528 | `0.66` | **0.7749** | 0.6301 | **91.51%** | 48.05% | 0.1263 |
-| 60-Day Early Warning ($T+2$) | **LightGBM Classifier** | 0.9492 | 0.7333 | `0.88` | 0.7018 | 0.6794 | 71.76% | 64.50% | 0.0916 |
-| 60-Day Early Warning ($T+2$) | **Random Forest Classifier** | 0.9493 | 0.7198 | `0.81` | 0.7433 | 0.6714 | 80.04% | 57.82% | 0.1061 |
+| **30-Day Early Warning ($T+1$)** | **Logistic Regression (L2)** | **0.9637** | **0.8148** | `0.61` | **0.7884** | 0.6510 | **91.74%** | 50.45% | 0.1105 |
+| 30-Day Early Warning ($T+1$) | **LightGBM Classifier** | 0.9635 | 0.8127 | `0.90` | 0.7281 | **0.7263** | 72.93% | **72.34%** | **0.0827** |
+| 30-Day Early Warning ($T+1$) | **XGBoost Classifier** | 0.9634 | 0.8101 | `0.88` | 0.7839 | 0.7182 | 83.47% | 63.03% | 0.0961 |
+| 30-Day Early Warning ($T+1$) | **Random Forest Classifier** | 0.9603 | 0.7659 | `0.87` | 0.7346 | 0.7017 | 75.83% | 65.30% | 0.1018 |
+| **60-Day Early Warning ($T+2$)** | **XGBoost Classifier** | **0.9564** | **0.7801** | `0.90` | 0.7254 | **0.6861** | 75.41% | 62.93% | **0.1000** |
+| 60-Day Early Warning ($T+2$) | **Logistic Regression (L2)** | 0.9559 | 0.7750 | `0.68` | **0.7833** | 0.6471 | **91.12%** | 50.17% | 0.1224 |
+| 60-Day Early Warning ($T+2$) | **LightGBM Classifier** | 0.9520 | 0.7551 | `0.87` | 0.7276 | 0.6886 | 75.62% | **63.21%** | 0.0920 |
+| 60-Day Early Warning ($T+2$) | **Random Forest Classifier** | 0.9537 | 0.7406 | `0.79` | 0.7556 | 0.6757 | 82.02% | 57.45% | 0.1039 |
 
 ### 8.2 Key Analytical Findings
 
 1. **High Discriminative Power Across Horizons**:
-   * All models achieve **ROC-AUC > 0.949** and **PR-AUC > 0.719** on unseen test data up to 60 days in advance.
-2. **Complementary Model Profiles**:
-   * **Logistic Regression** achieves the highest sensitivity (**91.3% to 91.5% Recall**), making it optimal as an ultra-sensitive screening filter for early alert dispatch.
-   * **LightGBM & XGBoost** provide the best probability calibration (**Brier score 0.0859–0.1008**) and higher precision (**64.3%–69.0%**), making them ideal for high-confidence operational resource scheduling.
+   * All models achieve **ROC-AUC > 0.952** and **PR-AUC > 0.740** on unseen test data up to 60 days in advance.
+2. **Complementary Model Profiles & Base-Rate Lift**:
+   * **Logistic Regression** achieves the highest sensitivity (**91.74% Recall** at **50.45% Precision**), delivering a **~10x predictive lift** over the ~5% random baseline, making it optimal as an ultra-sensitive screening filter for early alert dispatch.
+   * **LightGBM & XGBoost** provide the best probability calibration (**Brier score 0.0827–0.1000**) and higher precision (**62.9%–72.3%**), making them ideal for high-confidence operational resource scheduling.
 3. **60-Day Lead-Time Feasibility**:
-   * Performance degrades by less than **4.5% PR-AUC** when extending the lead time from 30 days to 60 days, confirming that multi-month atmospheric lags retain strong predictive power over a 2-month horizon.
+   * Performance degrades by less than **4.3% PR-AUC** when extending the lead time from 30 days to 60 days, confirming that multi-month atmospheric lags retain strong predictive power over a 2-month horizon.
 
 ---
 

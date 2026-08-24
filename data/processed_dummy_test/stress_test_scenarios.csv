@@ -1,8 +1,8 @@
 Scenario,Logistic Regression,Random Forest,LightGBM,XGBoost
-1. Baseline Normal (Typical Dry Month),0.0918,0.0739,0.1275,0.1082
-2. Hyper-Epidemic Storm (Lagged Deluge + Heat Spike + Dense Slum),0.9995,0.7193,0.9745,0.9497
-"3. Prolonged Extreme Drought (Zero Rain, High Heat, Low Mosquito Breeding)",0.0366,0.0505,0.0041,0.0091
-"4. High-Altitude Cold Shock (Temperature < 18C, Suppressed EIP)",0.0556,0.1543,0.032,0.0784
-5. Severe Contagion Spillover (Surrounding Barangays in Outbreak W*Y=1.0),1.0,0.3783,0.961,0.9277
-"6. Rural Vegetative Sparse Zone (2% Built-up, Low Pop Density)",0.001,0.0407,0.0211,0.0347
-7. Flash Urban Flooding with Moderate Temp,0.9573,0.4461,0.5167,0.4391
+1. Baseline Normal (Typical Dry Month),0.0653,0.1077,0.0892,0.1078
+2. Hyper-Epidemic Storm (Lagged Deluge + Heat Spike + Dense Slum),1.0,0.7578,0.961,0.9601
+"3. Prolonged Extreme Drought (Zero Rain, High Heat, Low Mosquito Breeding)",0.0439,0.0658,0.0052,0.01
+"4. High-Altitude Cold Shock (Temperature < 18C, Suppressed EIP)",0.0318,0.1371,0.0221,0.044
+5. Severe Contagion Spillover (Surrounding Barangays in Outbreak W*Y=1.0),1.0,0.4828,0.9427,0.9282
+"6. Rural Vegetative Sparse Zone (2% Built-up, Low Pop Density)",0.0019,0.0794,0.0169,0.0368
+7. Flash Urban Flooding with Moderate Temp,0.9285,0.5036,0.5302,0.4797

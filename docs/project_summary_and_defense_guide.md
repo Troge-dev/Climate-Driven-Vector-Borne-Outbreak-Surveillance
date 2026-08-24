@@ -88,38 +88,42 @@ graph LR
 
 ## 📊 4. CDO Holdout Performance Metrics (Unseen 2019–2022 Test Data)
 
-| Metric | 30-Day Horizon ($T+1$) | 60-Day Horizon ($T+2$) | Public Health Impact for CDO LGU |
+| Metric | 30-Day Horizon ($T+1$) | 60-Day Horizon ($T+2$) | Public Health Impact for CDO |
 | :--- | :---: | :---: | :--- |
-| **ROC-AUC** | **0.9605** | **0.9537** | Near-perfect discrimination between epidemic and normal months across CDO. |
-| **PR-AUC** | **0.7914** | **0.7554** | High precision-recall performance despite natural 19:1 outbreak class imbalance. |
-| **Outbreak Recall** | **91.30%** (LogReg) / **80.68%** (XGB) | **91.51%** (LogReg) / **73.46%** (XGB) | Catches 8 to 9 out of every 10 impending dengue outbreaks in CDO. |
-| **Precision** | **69.03%** (LightGBM) / **61.39%** (XGB) | **64.50%** (LightGBM) / **64.31%** (XGB) | 6 to 7 out of 10 dispatched alerts correspond to verified epidemics. |
-| **Brier Loss** | **0.0859** | **0.0916** | Highly calibrated probability estimates suitable for LGU decision thresholds. |
+| **ROC-AUC** | **0.9637** | **0.9564** | Near-perfect discrimination between epidemic and normal months across CDO. |
+| **PR-AUC** | **0.8148** | **0.7801** | High precision-recall performance despite natural 19:1 outbreak class imbalance. |
+| **Outbreak Recall** | **91.74%** (LogReg) / **83.47%** (XGB) | **91.12%** (LogReg) / **75.41%** (XGB) | Catches over 9 out of 10 impending dengue outbreaks in CDO 30 days ahead. |
+| **Precision** | **72.34%** (LightGBM) / **50.45%** (LogReg) | **63.21%** (LightGBM) / **50.17%** (LogReg) | Substantial ~10x lift over the ~5% random baseline prevalence. |
+| **Brier Loss** | **0.0827** | **0.0920** | Highly calibrated probability estimates suitable for decision thresholds. |
 
 ---
 
-## 🛡️ 5. Oral Defense Strategy & Panel Q&A (CDO LGU Context)
+## 🛡️ 5. Oral Defense Strategy & Panel Q&A (CDO Context)
 
 ### Q1: *"Why is this model specifically designed for Cagayan de Oro City rather than a generic national model?"*
 > **Answer**: 
-> "Dengue dynamics in Cagayan de Oro are shaped by distinct local geography: a high-density urban core along the Cagayan de Oro River basin (Carmen, Lapasan, Kauswagan), coastal port barangays (Macabalan, Puerto), and high-elevation rural enclaves (Dansolihon). A generic national model misses these micro-climatic and structural variations. By training and evaluating specifically on CDO's 80 barangays over 20 years, our pipeline models the exact spatial contiguity and building densities that govern local disease diffusion, giving direct operational utility to the CDO City Health Office."
+> "Dengue dynamics in Cagayan de Oro are shaped by distinct local geography: a high-density urban core along the Cagayan de Oro River basin (Carmen, Lapasan, Kauswagan), coastal port barangays (Macabalan, Puerto), and high-elevation rural enclaves (Dansolihon). A generic national model misses these micro-climatic and structural variations. By training and evaluating specifically on CDO's 80 barangays over 20 years, our pipeline models the exact spatial contiguity and building densities that govern local disease diffusion."
 
 ### Q2: *"Why do you use lagged climate features (1m, 2m, 3m, 4m) instead of current-month weather?"*
 > **Answer**: 
 > "Vector biology operates with unavoidable time delays: *Aedes aegypti* eggs require 7–10 days to hatch and develop into adult mosquitoes; once infected, the dengue virus requires 5–14 days of Extrinsic Incubation (EIP) inside the mosquito salivary glands before transmission can occur; and human intrinsic incubation takes another 4–10 days before symptoms prompt a clinical visit at JR Borja General Hospital or NMMC. 
-> Therefore, heavy rainfall and thermal heat today cause hospital surges **30 to 60 days later**. Using current weather would cause data leakage and eliminate operational lead time. Our model uses past weather ($T-1$, $T-2$, $T-3$, $T-4$) to give the CDO LGU true advance warning ($T+1$, $T+2$)."
+> Therefore, heavy rainfall and thermal heat today cause hospital surges **30 to 60 days later**. Using current weather would cause data leakage and eliminate operational lead time. Our model uses past weather ($T-1$, $T-2$, $T-3$, $T-4$) to give true advance warning ($T+1$, $T+2$)."
 
 ### Q3: *"What is the Spatial Contiguity Matrix ($W$) and why is it critical for CDO's 80 barangays?"*
 > **Answer**: 
-> "Dengue transmission does not stop at barangay boundaries. Commuters and mosquitoes move between adjacent communities (e.g., between Carmen, Kauswagan, and Patag). We constructed an $80 \times 80$ Queen contiguity spatial weights matrix ($W$) connecting all 428 shared borders in CDO. Multiplying $W$ by historical case counts ($W \cdot Y$) creates spatial spillover features that alert the City Health Office when an outbreak in an adjacent barangay threatens neighboring communities."
+> "Dengue transmission does not stop at barangay boundaries. Commuters and mosquitoes move between adjacent communities (e.g., between Carmen, Kauswagan, and Patag). We constructed an $80 \times 80$ Queen contiguity spatial weights matrix ($W$) connecting all 428 shared borders in CDO. Multiplying $W$ by historical case counts ($W \cdot Y$) creates spatial spillover features that alert health officers when an outbreak in an adjacent barangay threatens neighboring communities."
 
-### Q4: *"Why did you optimize for the $F_2$-Score instead of overall accuracy?"*
+### Q4: *"At ~91.7% recall and ~50.5% precision (Logistic Regression), is 50% precision basically just a coin flip?"*
 > **Answer**: 
-> "In public health surveillance, errors have asymmetric costs. A **False Negative** (failing to predict an outbreak in Carmen) results in overwhelmed hospital beds, severe dengue complications, and avoidable deaths. A **False Positive** merely results in pre-emptive larviciding and cleanups. The $F_2$-score weights Recall twice as heavily as Precision ($\beta = 2.0$), allowing the CDO City Health Office to capture over 91% of imminent outbreaks while maintaining high operational efficiency."
+> "**No, absolutely not.** In our dataset, dengue outbreaks are rare events with a baseline prevalence of only **~5.0%**.
+> * A naive random guess or coin flip would yield a precision of only **~5%** (19 out of 20 alerts would be false alarms).
+> * Our model achieves **50.5% precision**, representing an **almost 10-fold (1,000%) predictive lift** over the base rate. When the model fires an alert, the probability of an outbreak jumps from 1-in-20 to 1-in-2.
+> * In public health, false negatives (missed outbreaks filling ICU beds) are far more catastrophic than false positives (checking standing water in a safe barangay). That is why we optimize for **$F_2$-score** to catch >91% of outbreaks.
+> * If municipal health officers prefer higher precision to conserve inspection resources, our tournament offers **LightGBM**, which achieves **72.34% precision and 72.93% recall with 93.07% accuracy**."
 
 ### Q5: *"How do you prove that the model did not leak future data during testing?"*
 > **Answer**: 
-> "We enforced a strict temporal holdout partition. The models were trained strictly on **2003 through 2018 (16 years)** and evaluated exclusively on unseen data from **2019 through 2022 (4 years)**. For the 30-day and 60-day horizons, all meteorological and autoregressive features are strictly restricted to data available at $T-1$ and $T-2$ respectively."
+> "We enforced a strict chronological holdout partition. The models were trained strictly on **2003 through 2018 (16 years)** and evaluated exclusively on unseen data from **2019 through 2022 (4 years)**. Furthermore, the per-barangay 75th percentile outbreak threshold is computed **strictly from the pre-2019 training subset** and frozen across the test period (verified by unit test `tests/test_target_leakage.py`), preventing any test distribution statistics from leaking into past ground truth definitions."
 
 ---
 

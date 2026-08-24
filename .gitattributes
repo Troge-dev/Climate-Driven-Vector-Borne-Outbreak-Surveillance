@@ -1,0 +1,15 @@
+# Auto-detect text files and normalize line endings to LF on commit
+* text=auto eol=lf
+
+# Python Source Files
+*.py text diff=python
+*.ipynb text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Tabular Data Artifacts (Committed Processed & Synthetic Matrices)
+*.csv text diff -merge
+*.pdf binary
+*.docx binary
